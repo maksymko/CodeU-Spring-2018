@@ -16,40 +16,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CodeU Chat App</title>
-  <link rel="stylesheet" href="/css/main.css">
+    <title>CodeU Chat App</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 
-  <nav>
+<nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
     <a href="/conversations">Conversations</a>
-    <% if(request.getSession().getAttribute("user") != null){ %>
-      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-    <% } else{ %>
-      <a href="/login">Login</a>
+    <% if (request.getSession().getAttribute("user") != null) { %>
+    <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+    <% } else { %>
+    <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
     <a href="/testdata">Load Test Data</a>
-  </nav>
+</nav>
 
-  <div id="container">
+<div id="container">
     <div
-      style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
+            style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 
-      <h1>CodeU Chat App</h1>
-      <h2>Welcome!</h2>
+        <h1>CodeU Chat App</h1>
+        <h2>Welcome!</h2>
 
-      <ul>
-        <li><a href="/login">Login</a> to get started.</li>
-        <li>Go to the <a href="/conversations">conversations</a> page to
-            create or join a conversation.</li>
-        <li>View the <a href="/about.jsp">about</a> page to learn more about the
-            project.</li>
-        <li>You can <a href="/testdata">load test data</a> to fill the site with
-            example data.</li>
-      </ul>
+        <ul>
+            <li><a href="/login">Login</a> to get started.</li>
+            <li>Go to the <a href="/conversations">conversations</a> page to
+                create or join a conversation.
+            </li>
+            <li>View the <a href="/about.jsp">about</a> page to learn more about the
+                project.
+            </li>
+            <li>You can <a href="/testdata">load test data</a> to fill the site with
+                example data.
+            </li>
+        </ul>
     </div>
-  </div>
+</div>
 </body>
 </html>
