@@ -21,7 +21,8 @@ public class UserStoreTest {
   private final User USER_TWO =
       new User(UUID.randomUUID(), "test_username_two", "password_two", Instant.ofEpochMilli(2000));
   private final User USER_THREE =
-      new User(UUID.randomUUID(), "test_username_three", "password_three", Instant.ofEpochMilli(3000));
+      new User(
+          UUID.randomUUID(), "test_username_three", "password_three", Instant.ofEpochMilli(3000));
 
   @Before
   public void setup() {
@@ -88,6 +89,6 @@ public class UserStoreTest {
     Assert.assertEquals(expectedUser.getId(), actualUser.getId());
     Assert.assertEquals(expectedUser.getName(), actualUser.getName());
     Assert.assertEquals(expectedUser.getCreationTime(), actualUser.getCreationTime());
-    Assert.assertEquals(expectedUser.getPassword(), actualUser.getPassword());  
+    Assert.assertEquals(expectedUser.getPassword(), actualUser.getPassword());
   }
 }
