@@ -17,45 +17,55 @@ package codeu.model.data;
 import java.time.Instant;
 import java.util.UUID;
 
-/** Class representing a registered user. */
+/**
+ * Class representing a registered user.
+ */
 public class User {
-  private final UUID id;
-  private final String name;
-  private final String password;
-  private final Instant creation;
+    private final UUID id;
+    private final String name;
+    private final String password;
+    private final Instant creation;
 
-  /**
-   * Constructs a new User.
-   *
-   * @param id the ID of this User
-   * @param name the username of this User
-   * @param password the password of this User
-   * @param creation the creation time of this User
-   */
-  public User(UUID id, String name, String password, Instant creation) {
-    this.id = id;
-    this.name = name;
-    this.creation = creation;
-    this.password = password;
-  }
+    /**
+     * Constructs a new User.
+     *
+     * @param id       the ID of this User
+     * @param name     the username of this User
+     * @param password the password of this User
+     * @param creation the creation time of this User
+     */
+    public User(UUID id, String name, String password, Instant creation) {
+        this.id = id;
+        this.name = name;
+        this.creation = creation;
+        this.password = password;
+    }
 
-  /** Returns the ID of this User. */
-  public UUID getId() {
-    return id;
-  }
+    /**
+     * Returns the ID of this User.
+     */
+    public UUID getId() {
+        return id;
+    }
 
-  /** Returns the username of this User. */
-  public String getName() {
-    return name;
-  }
+    /**
+     * Returns the username of this User.
+     */
+    public String getName() {
+        return name;
+    }
 
-  /** Returns the password of this User. */
-  public String getPassword() {
-    return password;
-  }
+    /**
+     * Returns the password of this User.
+     */
+    public String getPassword() {
+        return password;
+    }
 
-  /** Returns the creation time of this User. */
-  public Instant getCreationTime() {
-    return creation;
-  }
+    /**
+     * Returns the creation time of this User.
+     */
+    public Instant getCreationTime() {
+        return creation;
+    }
 }
