@@ -22,10 +22,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 public class LoginServletTest {
@@ -62,8 +60,7 @@ public class LoginServletTest {
 
     loginServlet.doPost(mockRequest, mockResponse);
 
-    Mockito.verify(mockRequest)
-            .setAttribute("error", "That username was not found.");
+    Mockito.verify(mockRequest).setAttribute("error", "That username was not found.");
     Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
   }
 
@@ -104,8 +101,7 @@ public class LoginServletTest {
 
     loginServlet.doPost(mockRequest, mockResponse);
 
-    Mockito.verify(mockRequest)
-            .setAttribute("error", "Invalid password.");
+    Mockito.verify(mockRequest).setAttribute("error", "Invalid password.");
     Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
   }
 }
