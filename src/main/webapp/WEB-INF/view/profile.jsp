@@ -31,18 +31,10 @@
     </title>
     <link rel="stylesheet" href="/css/main.css" type="text/css">
 
-    <style>
-        #messages {
-            background-color: white;
-            height: 500px;
-            overflow-y: scroll
-        }
-    </style>
-
     <script>
         // scroll the chat div to the bottom
         function scrollChat() {
-            var chatDiv = document.getElementById('messages');
+            var chatDiv = document.getElementById('chat');
             chatDiv.scrollTop = chatDiv.scrollHeight;
         };
     </script>
@@ -63,7 +55,7 @@
 
 <div id="container">
     <% if(request.getAttribute("error") != null){ %>
-    <h2 style="color:red"><%= request.getAttribute("error") %></h2>
+    <h2 class="error"><%= request.getAttribute("error") %></h2>
     <% } else { %>
     <h1><%= user.getName() %>'s Profile Page</h1>
 
@@ -74,7 +66,7 @@
     <h2><%= user.getName() %>'s Sent Messages</h2>
 
     <hr/>
-    <div id="messages">
+    <div id="chat">
 
     </div>
     <hr/>

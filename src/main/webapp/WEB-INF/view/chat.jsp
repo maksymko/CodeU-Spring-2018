@@ -28,14 +28,6 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
   <title><%= conversation.getTitle() %></title>
   <link rel="stylesheet" href="/css/main.css" type="text/css">
 
-  <style>
-    #chat {
-      background-color: white;
-      height: 500px;
-      overflow-y: scroll
-    }
-  </style>
-
   <script>
     // scroll the chat div to the bottom
     function scrollChat() {
