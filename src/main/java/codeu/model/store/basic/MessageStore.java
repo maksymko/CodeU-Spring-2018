@@ -106,4 +106,11 @@ public class MessageStore {
   public void setMessages(List<Message> messages) {
     this.messages = messages;
   }
+
+  /**
+   * Returns a copy of the list of all messages.
+   */
+  public List<Message> getMessages() {
+    return this.messages;
+  }
 }

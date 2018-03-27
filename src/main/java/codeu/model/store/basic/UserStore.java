@@ -121,4 +121,12 @@ public class UserStore {
   public void setUsers(List<User> users) {
     this.users = users;
   }
+
+  /**
+   * Returns a copy of the list of all users.
+   */
+   public List<User> getUsers() {
+     return this.users;
+   }
+
 }

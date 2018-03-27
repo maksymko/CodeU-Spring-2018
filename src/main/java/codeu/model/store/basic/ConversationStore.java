@@ -117,4 +117,11 @@ public class ConversationStore {
   public void setConversations(List<Conversation> conversations) {
     this.conversations = conversations;
   }
+
+  /**
+   * Returns a copy of the list of all conversations.
+   */
+  public List<Conversation> getConversations() {
+    return this.conversations;
+  }
 }
