@@ -37,7 +37,7 @@
     <h1>Login</h1>
 
     <% if(request.getAttribute("error") != null){ %>
-        <h2 style="color:red"><%= request.getAttribute("error") %></h2>
+        <h2 class="error"><%= request.getAttribute("error") %></h2>
     <% } %>
 
     <form action="/login" method="POST">
