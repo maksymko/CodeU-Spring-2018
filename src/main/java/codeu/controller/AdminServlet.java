@@ -12,6 +12,7 @@ import java.util.UUID;
 import java.time.Instant;
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,6 +20,11 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet class responsible for user registration.
  */
 public class AdminServlet extends BaseServlet {
+  /** Set up state for compiling statistics */
+  @Override
+  public void init() throws ServletException {
+    super.init();
+  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
