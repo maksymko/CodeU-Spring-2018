@@ -45,6 +45,14 @@ nav a {
   width: 800px;
 }
 
+#chat {
+  background-color: white;
+  height: 500px;
+  overflow-y: scroll
+}
+
+.error {color:red;}
+
 h1 {
   color: #757575;
 }
