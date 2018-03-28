@@ -28,6 +28,7 @@
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
     <% } else{ %>
       <a href="/login">Login</a>
+      <a href="/register">Register</a>
     <% } %>
     <a href="/about.jsp">About</a>
   </nav>
@@ -36,7 +37,30 @@
     <div
       style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 
-      <h1>About the CodeU Chat App</h1>
+      <h1>About the CodeU Chat App of Team Twenty-Nine</h1>
+      <p>
+        <strong>Team:</strong>
+        <ul>
+          <li>
+            Bailey Pearson
+          </li>
+          <li>
+            James Baker
+          </li>
+          <li>
+            Jorge Andres Sabella
+          </li>
+          <li>
+            Yuxin Zhu
+          </li>
+        </ul>
+        <strong>Project Advisor:</strong>
+        <ul>
+          <li>
+            Maxim Sloyko
+          </li>
+        </ul>
+      </p>
       <p>
         This is an example chat application designed to be a starting point
         for your CodeU project team work. Here's some stuff to think about:
