@@ -61,10 +61,12 @@ public class User {
     return creation;
   }
 
+  /** Sets the user as an admin. */
   public void setAsAdmin() {
     isAdmin = true;
   }
 
+  /** removes the user as an admin. */
   public void removeAsAdmin() {
     isAdmin = false;
   }
