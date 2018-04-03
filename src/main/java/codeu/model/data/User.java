@@ -38,7 +38,7 @@ public class User {
     this.name = name;
     this.creation = creation;
     this.hashedPassword = hashedPassword;
-    isAdmin = true;
+    isAdmin = false;
   }
 
   /** Returns the ID of this User. */
