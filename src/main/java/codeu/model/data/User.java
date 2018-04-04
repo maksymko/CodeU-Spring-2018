@@ -23,7 +23,7 @@ public class User {
   private final String name;
   private final String hashedPassword;
   private final Instant creation;
-  private final String about;
+  public String about;
   /**
    * Constructs a new User.
    *
@@ -49,6 +49,9 @@ public class User {
   public String getAbout() {
     return about;
   }
+/*  public void SetAbout(String aboutt) {
+    about = aboutt;
+  }*/
 
   /** Returns the username of this User. */
   public String getName() {

@@ -50,5 +50,14 @@ public class ProfileServlet extends BaseServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response)
           throws IOException, ServletException {
+    String requestUrl = request.getRequestURI();
+    String username = requestUrl.substring("/profile/".length());
+    
+    String userValue = request.getParameter("message");
+    User user = userStore.getUser(username);
+    user.about = userValue;
+
+    response.sendRedirect("/profile/");
+
   }
 }

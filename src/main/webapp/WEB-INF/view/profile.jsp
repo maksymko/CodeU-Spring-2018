@@ -64,7 +64,7 @@
     <hr/>
     <h2 style= "text-align: center;"> About <%= user.getName() %>
     <h3 style= "text-align: center;"> Edit your About Me (only you can see this) </h3>
-      <form action="/action_page.php" style= "text-align: center;">
+      <form action="/profile" style= "text-align: center;" method="POST">
         <textarea name="message" style="width:400px; height:100px;"><%= about %></textarea>
         <br>
         <input type="submit">
