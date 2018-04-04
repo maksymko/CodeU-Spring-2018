@@ -23,7 +23,7 @@ public class User {
   private final String name;
   private final String hashedPassword;
   private final Instant creation;
-
+  private final String about;
   /**
    * Constructs a new User.
    *
@@ -31,17 +31,23 @@ public class User {
    * @param name the username of this User
    * @param password the password of this User
    * @param creation the creation time of this User
+   * @param about the aboutme information of the user
    */
-  public User(UUID id, String name, String hashedPassword, Instant creation) {
+  public User(UUID id, String name, String hashedPassword, Instant creation, String about) {
     this.id = id;
     this.name = name;
     this.creation = creation;
     this.hashedPassword = hashedPassword;
+    this.about = about;
   }
 
   /** Returns the ID of this User. */
   public UUID getId() {
     return id;
+  }
+  /** Returns the about me of this User. */
+  public String getAbout() {
+    return about;
   }
 
   /** Returns the username of this User. */

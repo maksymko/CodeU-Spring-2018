@@ -35,8 +35,10 @@ public class ProfileServlet extends BaseServlet {
       request.getRequestDispatcher("/WEB-INF/view/profile.jsp").forward(request, response);
       return;
     }
+    String about = user.getAbout();
 
     request.setAttribute("view_user", user);
+    request.setAttribute("aboutme", about);
     request.getRequestDispatcher("/WEB-INF/view/profile.jsp").forward(request, response);
   }
 

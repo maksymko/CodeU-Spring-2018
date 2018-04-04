@@ -19,6 +19,7 @@
 <%@ page import="codeu.model.store.basic.UserStore" %>
 
 <% User user = (User) request.getAttribute("view_user"); %>
+<% String about = (String) request.getAttribute("aboutme"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +65,7 @@
     <h2 style= "text-align: center;"> About <%= user.getName() %>
     <h3 style= "text-align: center;"> Edit your About Me (only you can see this) </h3>
       <form action="/action_page.php" style= "text-align: center;">
-        <textarea name="message" style="width:400px; height:100px;">Edit here.</textarea>
+        <textarea name="message" style="width:400px; height:100px;"><%= about %></textarea>
         <br>
         <input type="submit">
       </form>
