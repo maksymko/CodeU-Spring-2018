@@ -4,6 +4,7 @@ import codeu.model.data.User;
 import codeu.model.store.basic.UserStore;
 import java.io.IOException;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -62,7 +63,7 @@ public class RegisterServlet extends HttpServlet {
       return;
     }
 
-    User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now());
+    User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now(), new ArrayList<>());
     userStore.addUser(user);
 
     response.sendRedirect("/login");
