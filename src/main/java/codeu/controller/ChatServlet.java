@@ -91,6 +91,7 @@ public class ChatServlet extends BaseServlet {
       response.sendRedirect("/conversations");
       return;
     }
+    user.addConversationIds(conversation.getId());
 
     String messageContent = request.getParameter("message");
 

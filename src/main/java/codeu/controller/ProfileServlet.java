@@ -5,6 +5,7 @@ import codeu.model.data.Message;
 import codeu.model.data.User;
 import java.io.IOException;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import javax.servlet.ServletException;
@@ -35,8 +36,18 @@ public class ProfileServlet extends BaseServlet {
       request.getRequestDispatcher("/WEB-INF/view/profile.jsp").forward(request, response);
       return;
     }
+    List<Message> authorMessages = new ArrayList<>();
+    for (UUID conversationId : user.getConversationIds()){
+      List<Message> messages = messageStore.getMessagesInConversation(conversationId);
+      for(Message message: messages){
+        if(message.getAuthorId().equals(user.getId())){
+          authorMessages.add(message);
+        }
+      }
+    }
 
     request.setAttribute("view_user", user);
+    request.setAttribute("messages", authorMessages);
     request.getRequestDispatcher("/WEB-INF/view/profile.jsp").forward(request, response);
   }
 
