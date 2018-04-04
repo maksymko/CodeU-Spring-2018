@@ -58,17 +58,26 @@
     <% if(request.getAttribute("error") != null){ %>
     <h2 class="error"><%= request.getAttribute("error") %></h2>
     <% } else { %>
-    <h1><%= user.getName() %>'s Profile Page</h1>
 
+    <h1 style= "text-align: center;"><%= user.getName() %>'s Profile Page</h1>
     <hr/>
-    <h2> About <%= user.getName() %>
+    <h2 style= "text-align: center;"> About <%= user.getName() %>
+    <h3 style= "text-align: center;"> Edit your About Me (only you can see this) </h3>
+      <form action="/action_page.php" style= "text-align: center;">
+        <textarea name="message" style="width:400px; height:100px;">Edit here.</textarea>
+        <br>
+        <input type="submit">
+      </form>
     </h2>
     <hr/>
-    <h2><%= user.getName() %>'s Sent Messages</h2>
+    <h2 style= "text-align: center;"><%= user.getName() %>'s Sent Messages</h2>
 
     <hr/>
     <div id="chat">
-
+      <form style= "text-align: center;">
+        <textarea name="message" style="width:400px; height:400px;">Past Messages Displayed here.</textarea>
+        <br>
+      </form>
     </div>
     <hr/>
     <% } %>
