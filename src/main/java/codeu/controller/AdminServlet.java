@@ -20,12 +20,6 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet class responsible for user registration.
  */
 public class AdminServlet extends BaseServlet {
-  /** Set up state for compiling statistics */
-  @Override
-  public void init() throws ServletException {
-    super.init();
-  }
-
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     request.setAttribute("numUsers", numUsers());
@@ -39,24 +33,23 @@ public class AdminServlet extends BaseServlet {
 
   /** Returns number of users in database */
   private int numUsers() {
-    return this.userStore.getUsers().size();
+    return this.userStore.getNumUsers();
   }
 
   /** Returns number of conversations in database */
   private int numConvos() {
-    return this.conversationStore.getConversations().size();
+    return this.conversationStore.getNumConvos();
   }
 
   /** Returns number of messages in database */
   private int numMessages() {
-    return this.messageStore.getMessages().size();
+    return this.messageStore.getNumMessages();
   }
 
   /** Calculated by user with most messsages sent and most conversations started */
   private String mostActiveUser() {
     // Mapping User's UUID to the frequency of their contributions
     HashMap<UUID, Integer> frequencyMap = new HashMap<UUID, Integer>();
-    String mostActiveUserName = "No messages/conversations posted";
     List<Conversation> conversations = this.conversationStore.getConversations();
     List<Message> messages = this.messageStore.getMessages();
 
@@ -70,14 +63,7 @@ public class AdminServlet extends BaseServlet {
       frequencyMap.merge(messageOwner, 1, Integer::sum);
     }
 
-    try {
-      // Finding UUID with max value (contributions)
-      UUID mostActiveUserUUID = frequencyMap.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey();
-      mostActiveUserName = this.userStore.getUser(mostActiveUserUUID).getName();
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
-    return mostActiveUserName;
+    return maxFrequencyUsername(frequencyMap, "No messages/conversations posted");
   }
 
   /** Returns newest member by creation date */
@@ -100,7 +86,6 @@ public class AdminServlet extends BaseServlet {
   private String wordiestUser() {
     // Mapping User's UUID to the frequency of their words sent
     HashMap<UUID, Integer> frequencyMap = new HashMap<UUID, Integer>();
-    String wordiestUser = "No users added";
     List<Message> messages = this.messageStore.getMessages();
 
     for (Message message: messages) {
@@ -109,14 +94,22 @@ public class AdminServlet extends BaseServlet {
       frequencyMap.merge(messageOwner, wordsInMessage, Integer::sum);
     }
 
-    try {
-      // Finding UUID with max value (words sent)
-      UUID wordiestUserUUID = frequencyMap.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey();
-      wordiestUser = this.userStore.getUser(wordiestUserUUID).getName();
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
-
-    return wordiestUser;
+    return maxFrequencyUsername(frequencyMap, "No users added");
   }
+
+  private String maxFrequencyUsername(HashMap<UUID, Integer> frequencyMap, String noUserDefault) {
+    // Finding UUID with max value (words sent)
+    if (frequencyMap.isEmpty()) {
+      return noUserDefault;
+    }
+    UUID wordiestUserUUID = frequencyMap
+      .entrySet()
+      .stream()
+      .max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1)
+      .get()
+      .getKey();
+
+    return this.userStore.getUser(wordiestUserUUID).getName();
+  }
+
 }

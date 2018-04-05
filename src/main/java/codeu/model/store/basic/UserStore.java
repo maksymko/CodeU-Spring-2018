@@ -114,6 +114,11 @@ public class UserStore {
     return false;
   }
 
+  /** Returns number of users in database */
+  public int getNumUsers() {
+    return this.users.size();
+  }
+
   /**
    * Sets the List of Users stored by this UserStore. This should only be called once, when the data
    * is loaded from Datastore.

@@ -118,6 +118,11 @@ public class ConversationStore {
     this.conversations = conversations;
   }
 
+  /** Returns number of conversations in database */
+  public int getNumConvos() {
+    return this.conversations.size();
+  }
+
   /**
    * Returns a copy of the list of all conversations.
    */
