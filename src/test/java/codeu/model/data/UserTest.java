@@ -15,6 +15,8 @@
 package codeu.model.data;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,12 +29,13 @@ public class UserTest {
     String name = "test_username";
     Instant creation = Instant.now();
     String password = "password";
-
-    User user = new User(id, name, password, creation);
+    List<UUID> conversationIds = new ArrayList<>();
+    User user = new User(id, name, password, creation, conversationIds);
 
     Assert.assertEquals(id, user.getId());
     Assert.assertEquals(name, user.getName());
     Assert.assertEquals(password, user.getPassword());
     Assert.assertEquals(creation, user.getCreationTime());
+    Assert.assertEquals(conversationIds, user.getConversationIds());
   }
 }

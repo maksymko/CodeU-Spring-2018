@@ -56,7 +56,7 @@ public class ProfileServletTest {
     Mockito.when(mockRequest.getSession()).thenReturn(mockSession);
 
     mockResponse = Mockito.mock(HttpServletResponse.class);
-    mockRequestDispatcher = Mockito.mock(RequestDispatcher.class);
+     mockRequestDispatcher = Mockito.mock(RequestDispatcher.class);
     Mockito.when(mockRequest.getRequestDispatcher("/WEB-INF/view/profile.jsp"))
             .thenReturn(mockRequestDispatcher);
 
