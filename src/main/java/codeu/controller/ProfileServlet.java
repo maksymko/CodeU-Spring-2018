@@ -49,15 +49,18 @@ public class ProfileServlet extends BaseServlet {
    */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws IOException, ServletException {
-    String requestUrl = request.getRequestURI();
-    String username = requestUrl.substring("/profile/".length());
-    
+          throws IOException, ServletException { 
     String userValue = request.getParameter("message");
+    String username = (String) request.getSession().getAttribute("user");
     User user = userStore.getUser(username);
-    user.about = userValue;
+      if (username == null) {
+        // user is not logged in, don't let see other users
+        response.sendRedirect("/login");
+        return;
+      }
+    user.setAbout(userValue);
 
-    response.sendRedirect("/profile/");
+    response.sendRedirect(user.getName());
 
   }
 }

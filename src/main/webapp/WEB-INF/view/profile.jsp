@@ -63,22 +63,23 @@
     <h1 style= "text-align: center;"><%= user.getName() %>'s Profile Page</h1>
     <hr/>
     <h2 style= "text-align: center;"> About <%= user.getName() %>
-    <h3 style= "text-align: center;"> Edit your About Me (only you can see this) </h3>
-      <form action="/profile" style= "text-align: center;" method="POST">
-        <textarea name="message" style="width:400px; height:100px;"><%= about %></textarea>
-        <br>
-        <input type="submit">
-      </form>
+    <% if( user.getName().equals(request.getSession().getAttribute("user")) ) { %>
+      <h3 style= "text-align: center;"> Edit your About Me (only you can see this) </h3>
+       <form action="/profile/" style= "text-align: center;" method="POST">
+          <input type="text" name="message" value="<%= about %>">
+          <br>
+          <input type="submit" value="Submit">
+        </form>
+    <% } else { %>
+      <p style="color: red"><%= about %></p>
+    <% } %>
     </h2>
     <hr/>
     <h2 style= "text-align: center;"><%= user.getName() %>'s Sent Messages</h2>
 
     <hr/>
     <div id="chat">
-      <form style= "text-align: center;">
-        <textarea name="message" style="width:400px; height:400px;">Past Messages Displayed here.</textarea>
-        <br>
-      </form>
+
     </div>
     <hr/>
     <% } %>

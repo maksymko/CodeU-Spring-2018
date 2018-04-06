@@ -23,13 +23,15 @@ public class User {
   private final String name;
   private final String hashedPassword;
   private final Instant creation;
-  public String about;
+  private String about;
+  private boolean isAdmin;
+
   /**
    * Constructs a new User.
    *
    * @param id the ID of this User
    * @param name the username of this User
-   * @param password the password of this User
+   * @param hashedPassword the users password
    * @param creation the creation time of this User
    * @param about the aboutme information of the user
    */
@@ -39,6 +41,7 @@ public class User {
     this.creation = creation;
     this.hashedPassword = hashedPassword;
     this.about = about;
+    isAdmin = false;
   }
 
   /** Returns the ID of this User. */
@@ -49,9 +52,10 @@ public class User {
   public String getAbout() {
     return about;
   }
-/*  public void SetAbout(String aboutt) {
-    about = aboutt;
-  }*/
+  /** Changes the about me of this User. */
+  public void setAbout(String about) {
+    this.about = about;
+  }
 
   /** Returns the username of this User. */
   public String getName() {
@@ -67,4 +71,17 @@ public class User {
   public Instant getCreationTime() {
     return creation;
   }
+
+  /** Sets the user as an admin. */
+  public void setAsAdmin() {
+    isAdmin = true;
+  }
+
+  /** removes the user as an admin. */
+  public void removeAsAdmin() {
+    isAdmin = false;
+  }
+
+  /** Returns if the user is or is not admin  */
+  public boolean getIsAdmin() { return isAdmin; }
 }
