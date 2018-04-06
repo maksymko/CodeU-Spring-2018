@@ -130,7 +130,7 @@ public class PersistentDataStoreTest {
 
     // load
     List<Message> resultMessages = persistentDataStore.loadMessages();
-    List<Message> resultMessagesAuthorOne = persistentDataStore.loadMessages(authorOne);
+    List<Message> resultMessagesAuthorOne = persistentDataStore.loadMessagesByUser(authorOne);
 
     // confirm that what we saved matches what we loaded
     Message resultMessageOne = resultMessages.get(0);

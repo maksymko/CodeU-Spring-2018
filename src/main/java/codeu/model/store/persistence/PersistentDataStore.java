@@ -167,7 +167,7 @@ public class PersistentDataStore {
    * @throws PersistentDataStoreException if an error was detected during the load from the
    *     Datastore service
    */
-  public List<Message> loadMessages(UUID userId) throws PersistentDataStoreException {
+  public List<Message> loadMessagesByUser(UUID userId) throws PersistentDataStoreException {
 
     // Retrieve messages written by user from the datastore.
     Filter propertyFilter =
