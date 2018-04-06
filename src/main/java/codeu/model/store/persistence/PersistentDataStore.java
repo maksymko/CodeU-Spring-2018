@@ -23,6 +23,9 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,19 +116,16 @@ public class PersistentDataStore {
   }
 
   /**
-   * Loads all Message objects from the Datastore service and returns them in a List.
+   * Loads all Message objects from query and returns them in a List.
    *
    * @throws PersistentDataStoreException if an error was detected during the load from the
    *     Datastore service
    */
-  public List<Message> loadMessages() throws PersistentDataStoreException {
+  public List<Message> loadMessagesFromQuery(Query query) throws PersistentDataStoreException {
 
     List<Message> messages = new ArrayList<>();
 
-    // Retrieve all messages from the datastore.
-    Query query = new Query("chat-messages");
     PreparedQuery results = datastore.prepare(query);
-
     for (Entity entity : results.asIterable()) {
       try {
         UUID uuid = UUID.fromString((String) entity.getProperty("uuid"));
@@ -144,6 +144,38 @@ public class PersistentDataStore {
     }
 
     return messages;
+  }
+
+
+  /**
+   * Loads all Message objects from the Datastore service and returns them in a List.
+   *
+   * @throws PersistentDataStoreException if an error was detected during the load from the
+   *     Datastore service
+   */
+  public List<Message> loadMessages() throws PersistentDataStoreException {
+
+    // Retrieve all messages from the datastore.
+    Query query = new Query("chat-messages");
+    return loadMessagesFromQuery(query);
+  }
+
+  /**
+   * Loads all Message objects whose authorId matches userIdfrom the Datastore service and
+   *     returns them in a List.
+   *
+   * @throws PersistentDataStoreException if an error was detected during the load from the
+   *     Datastore service
+   */
+  public List<Message> loadMessages(UUID userId) throws PersistentDataStoreException {
+
+    // Retrieve messages written by user from the datastore.
+    Filter propertyFilter =
+            new FilterPredicate("author_uuid", FilterOperator.EQUAL, userId.toString());
+
+    Query query = new Query("chat-messages").setFilter(propertyFilter);
+    return loadMessagesFromQuery(query);
+
   }
 
   /** Write a User object to the Datastore service. */
