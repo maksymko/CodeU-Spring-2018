@@ -44,14 +44,14 @@ public class PersistentDataStoreTest {
     String passwordOne = "passwordOne";
     Instant creationOne = Instant.ofEpochMilli(1000);
     List<UUID> conversationIdsOne = new ArrayList<>();
-    User inputUserOne = new User(idOne, nameOne, passwordOne, creationOne, conversationIdsOne);
+    User inputUserOne = new User(idOne, nameOne, passwordOne, creationOne, conversationIdsOne, "Soon to be edited");
 
     UUID idTwo = UUID.randomUUID();
     String nameTwo = "test_username_two";
     String passwordTwo = "passwordTwo";
     Instant creationTwo = Instant.ofEpochMilli(2000);
     List<UUID> conversationIdsTwo = new ArrayList<>();
-    User inputUserTwo = new User(idTwo, nameTwo, passwordTwo, creationTwo, conversationIdsTwo);
+    User inputUserTwo = new User(idTwo, nameTwo, passwordTwo, creationTwo, conversationIdsTwo, "Soon to be edited");
 
     // save
     persistentDataStore.writeThrough(inputUserOne);

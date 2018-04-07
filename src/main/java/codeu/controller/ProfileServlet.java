@@ -36,6 +36,7 @@ public class ProfileServlet extends BaseServlet {
       request.getRequestDispatcher("/WEB-INF/view/profile.jsp").forward(request, response);
       return;
     }
+    String about = user.getAbout();
     List<Message> authorMessages = new ArrayList<>();
     for (UUID conversationId : user.getConversationIds()){
       List<Message> messages = messageStore.getMessagesInConversation(conversationId);
@@ -45,7 +46,7 @@ public class ProfileServlet extends BaseServlet {
         }
       }
     }
-
+    request.setAttribute("aboutme", about);
     request.setAttribute("view_user", user);
     request.setAttribute("messages", authorMessages);
     request.getRequestDispatcher("/WEB-INF/view/profile.jsp").forward(request, response);
@@ -58,6 +59,18 @@ public class ProfileServlet extends BaseServlet {
    */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws IOException, ServletException {
+          throws IOException, ServletException { 
+    String userValue = request.getParameter("message");
+    String username = (String) request.getSession().getAttribute("user");
+    User user = userStore.getUser(username);
+      if (username == null) {
+        // user is not logged in, don't let see other users
+        response.sendRedirect("/login");
+        return;
+      }
+    user.setAbout(userValue);
+
+    response.sendRedirect(user.getName());
+
   }
 }

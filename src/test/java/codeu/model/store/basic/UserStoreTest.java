@@ -18,13 +18,13 @@ public class UserStoreTest {
 
   private final User USER_ONE =
       new User(UUID.randomUUID(), "test_username_one", "password_one", Instant.ofEpochMilli(1000),
-              new ArrayList<>());
+              new ArrayList<>(), "Soon to be edited");
   private final User USER_TWO =
       new User(UUID.randomUUID(), "test_username_two", "password_two", Instant.ofEpochMilli(2000),
-              new ArrayList<>());
+              new ArrayList<>(), "Soon to be edited");
   private final User USER_THREE =
       new User(UUID.randomUUID(), "test_username_three", "password_three", Instant.ofEpochMilli(3000),
-              new ArrayList<>());
+              new ArrayList<>(), "Soon to be edited");
 
   @Before
   public void setup() {
@@ -69,7 +69,7 @@ public class UserStoreTest {
   @Test
   public void testAddUser() {
     User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(),
-            new ArrayList<>());
+            new ArrayList<>(), "Soon to be edited");
 
     userStore.addUser(inputUser);
     User resultUser = userStore.getUser("test_username");

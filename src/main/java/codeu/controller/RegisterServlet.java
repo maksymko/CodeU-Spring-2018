@@ -50,6 +50,7 @@ public class RegisterServlet extends HttpServlet {
     String username = request.getParameter("username");
     String password = request.getParameter("password");
     String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
+    String about = "Soon to be edited";
 
     if (!username.matches("[\\w*\\s*]*")) {
       request.setAttribute("error", "Please enter only letters, numbers, and spaces.");
@@ -63,7 +64,7 @@ public class RegisterServlet extends HttpServlet {
       return;
     }
 
-    User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now(), new ArrayList<>());
+    User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now(), new ArrayList<>(), about);
     userStore.addUser(user);
 
     response.sendRedirect("/login");
