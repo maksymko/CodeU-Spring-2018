@@ -29,8 +29,9 @@ public class UserTest {
     String name = "test_username";
     Instant creation = Instant.now();
     String password = "password";
+    String about = "Soon to be edited";
     List<UUID> conversationIds = new ArrayList<>();
-    User user = new User(id, name, password, creation, conversationIds);
+    User user = new User(id, name, password, creation, conversationIds, about);
 
     Assert.assertEquals(id, user.getId());
     Assert.assertEquals(name, user.getName());

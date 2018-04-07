@@ -24,6 +24,7 @@ public class User {
   private final String name;
   private final String hashedPassword;
   private final Instant creation;
+  private String about;
   private boolean isAdmin;
   private List<UUID> conversationIds;
 
@@ -34,14 +35,16 @@ public class User {
    * @param name the username of this User
    * @param hashedPassword the users password
    * @param creation the creation time of this User
+   * @param about the aboutme information of the user
    * @param conversationIds the conversation titles that this User is in
    */
   public User(UUID id, String name, String hashedPassword, Instant creation,
-              List<UUID> conversationIds) {
+              List<UUID> conversationIds, String about) {
     this.id = id;
     this.name = name;
     this.creation = creation;
     this.hashedPassword = hashedPassword;
+    this.about = about;
     isAdmin = false;
     this.conversationIds = conversationIds;
   }
@@ -49,6 +52,14 @@ public class User {
   /** Returns the ID of this User. */
   public UUID getId() {
     return id;
+  }
+  /** Returns the about me of this User. */
+  public String getAbout() {
+    return about;
+  }
+  /** Changes the about me of this User. */
+  public void setAbout(String about) {
+    this.about = about;
   }
 
   /** Returns the username of this User. */

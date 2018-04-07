@@ -21,6 +21,7 @@
 <%@ page import="codeu.model.data.Message" %>
 
 <% User user = (User) request.getAttribute("view_user"); %>
+<% String about = (String) request.getAttribute("aboutme"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,6 +49,7 @@
     <a href="/conversations">Conversations</a>
     <% if (request.getSession().getAttribute("user") != null) { %>
     <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+    <a href="/profile/<%= request.getSession().getAttribute("user") %>"><%= request.getSession().getAttribute("user") %> Profile Page</a>
     <% } else { %>
     <a href="/login">Login</a>
     <a href="/register">Register</a>
@@ -59,13 +61,23 @@
     <% if(request.getAttribute("error") != null){ %>
     <h2 class="error"><%= request.getAttribute("error") %></h2>
     <% } else { %>
-    <h1><%= user.getName() %>'s Profile Page</h1>
 
+    <h1 style= "text-align: center;"><%= user.getName() %>'s Profile Page</h1>
     <hr/>
-    <h2> About <%= user.getName() %>
+    <h2 style= "text-align: center;"> About <%= user.getName() %>
+    <% if( user.getName().equals(request.getSession().getAttribute("user")) ) { %>
+      <h3 style= "text-align: center;"> Edit your About Me (only you can see this) </h3>
+       <form action="/profile/" style= "text-align: center;" method="POST">
+          <input type="text" name="message" value="<%= about %>">
+          <br>
+          <input type="submit" value="Submit">
+        </form>
+    <% } else { %>
+      <p style="color: red"><%= about %></p>
+    <% } %>
     </h2>
     <hr/>
-    <h2><%= user.getName() %>'s Sent Messages</h2>
+    <h2 style= "text-align: center;"><%= user.getName() %>'s Sent Messages</h2>
 
     <div id="chat">
         <ul>

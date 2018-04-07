@@ -102,8 +102,20 @@ public class MessageStore {
     return messagesInConversation;
   }
 
+  /** Returns number of messages in database */
+  public int getNumMessages() {
+    return this.messages.size();
+  }
+
   /** Sets the List of Messages stored by this MessageStore. */
   public void setMessages(List<Message> messages) {
     this.messages = messages;
+  }
+
+  /**
+   * Returns a copy of the list of all messages.
+   */
+  public List<Message> getMessages() {
+    return this.messages;
   }
 }
