@@ -17,11 +17,14 @@ public class UserStoreTest {
   private PersistentStorageAgent mockPersistentStorageAgent;
 
   private final User USER_ONE =
-      new User(UUID.randomUUID(), "test_username_one", "password_one", Instant.ofEpochMilli(1000), "Soon to be edited");
+      new User(UUID.randomUUID(), "test_username_one", "password_one", Instant.ofEpochMilli(1000),
+              new ArrayList<>(), "Soon to be edited");
   private final User USER_TWO =
-      new User(UUID.randomUUID(), "test_username_two", "password_two", Instant.ofEpochMilli(2000), "Soon to be edited");
+      new User(UUID.randomUUID(), "test_username_two", "password_two", Instant.ofEpochMilli(2000),
+              new ArrayList<>(), "Soon to be edited");
   private final User USER_THREE =
-      new User(UUID.randomUUID(), "test_username_three", "password_three", Instant.ofEpochMilli(3000), "Soon to be edited");
+      new User(UUID.randomUUID(), "test_username_three", "password_three", Instant.ofEpochMilli(3000),
+              new ArrayList<>(), "Soon to be edited");
 
   @Before
   public void setup() {
@@ -65,7 +68,8 @@ public class UserStoreTest {
 
   @Test
   public void testAddUser() {
-    User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), "Soon to be edited");
+    User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(),
+            new ArrayList<>(), "Soon to be edited");
 
     userStore.addUser(inputUser);
     User resultUser = userStore.getUser("test_username");
@@ -88,6 +92,7 @@ public class UserStoreTest {
     Assert.assertEquals(expectedUser.getId(), actualUser.getId());
     Assert.assertEquals(expectedUser.getName(), actualUser.getName());
     Assert.assertEquals(expectedUser.getCreationTime(), actualUser.getCreationTime());
-    Assert.assertEquals(expectedUser.getPassword(), actualUser.getPassword());  
+    Assert.assertEquals(expectedUser.getPassword(), actualUser.getPassword());
+    Assert.assertEquals(expectedUser.getConversationIds(), actualUser.getConversationIds());
   }
 }

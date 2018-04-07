@@ -6,6 +6,7 @@ import codeu.model.data.User;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.junit.After;
@@ -42,13 +43,15 @@ public class PersistentDataStoreTest {
     String nameOne = "test_username_one";
     String passwordOne = "passwordOne";
     Instant creationOne = Instant.ofEpochMilli(1000);
-    User inputUserOne = new User(idOne, nameOne, passwordOne, creationOne, "Soon to be edited");
+    List<UUID> conversationIdsOne = new ArrayList<>();
+    User inputUserOne = new User(idOne, nameOne, passwordOne, creationOne, conversationIdsOne, "Soon to be edited");
 
     UUID idTwo = UUID.randomUUID();
     String nameTwo = "test_username_two";
     String passwordTwo = "passwordTwo";
     Instant creationTwo = Instant.ofEpochMilli(2000);
-    User inputUserTwo = new User(idTwo, nameTwo, passwordTwo, creationTwo, "Soon to be edited");
+    List<UUID> conversationIdsTwo = new ArrayList<>();
+    User inputUserTwo = new User(idTwo, nameTwo, passwordTwo, creationTwo, conversationIdsTwo, "Soon to be edited");
 
     // save
     persistentDataStore.writeThrough(inputUserOne);
@@ -63,12 +66,14 @@ public class PersistentDataStoreTest {
     Assert.assertEquals(nameOne, resultUserOne.getName());
     Assert.assertEquals(creationOne, resultUserOne.getCreationTime());
     Assert.assertEquals(passwordOne, resultUserOne.getPassword());
+    Assert.assertEquals(conversationIdsOne, resultUserOne.getConversationIds());
 
     User resultUserTwo = resultUsers.get(1);
     Assert.assertEquals(idTwo, resultUserTwo.getId());
     Assert.assertEquals(nameTwo, resultUserTwo.getName());
     Assert.assertEquals(creationTwo, resultUserTwo.getCreationTime());
     Assert.assertEquals(passwordTwo, resultUserTwo.getPassword());
+    Assert.assertEquals(conversationIdsTwo, resultUserTwo.getConversationIds());
   }
 
   @Test

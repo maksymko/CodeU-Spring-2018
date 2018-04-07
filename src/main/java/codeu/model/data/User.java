@@ -15,6 +15,7 @@
 package codeu.model.data;
 import java.time.Instant;
 import java.util.UUID;
+import java.util.List;
 import org.mindrot.jbcrypt.*;
 
 /** Class representing a registered user. */
@@ -25,6 +26,7 @@ public class User {
   private final Instant creation;
   private String about;
   private boolean isAdmin;
+  private List<UUID> conversationIds;
 
   /**
    * Constructs a new User.
@@ -34,14 +36,17 @@ public class User {
    * @param hashedPassword the users password
    * @param creation the creation time of this User
    * @param about the aboutme information of the user
+   * @param conversationIds the conversation titles that this User is in
    */
-  public User(UUID id, String name, String hashedPassword, Instant creation, String about) {
+  public User(UUID id, String name, String hashedPassword, Instant creation,
+              List<UUID> conversationIds, String about) {
     this.id = id;
     this.name = name;
     this.creation = creation;
     this.hashedPassword = hashedPassword;
     this.about = about;
     isAdmin = false;
+    this.conversationIds = conversationIds;
   }
 
   /** Returns the ID of this User. */
@@ -70,6 +75,19 @@ public class User {
   /** Returns the creation time of this User. */
   public Instant getCreationTime() {
     return creation;
+  }
+
+  /** Returns the conversation titles of this User. */
+  public List<UUID> getConversationIds() {
+    return conversationIds;
+  }
+
+  public void addConversationIds(UUID id){
+    for(UUID conversationId:conversationIds){
+      if(conversationId.equals(id))  return;
+    }
+    conversationIds.add(id);
+    //PersistentStorageAgent.getInstance().writeThrough(user);
   }
 
   /** Sets the user as an admin. */

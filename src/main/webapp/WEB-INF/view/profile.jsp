@@ -14,9 +14,11 @@
   limitations under the License.
 --%>
 <%@ page import="java.util.List" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.ZoneId" %>
+<%@ page import="java.time.Instant" %>
 <%@ page import="codeu.model.data.User" %>
 <%@ page import="codeu.model.data.Message" %>
-<%@ page import="codeu.model.store.basic.UserStore" %>
 
 <% User user = (User) request.getAttribute("view_user"); %>
 <% String about = (String) request.getAttribute("aboutme"); %>
@@ -77,9 +79,22 @@
     <hr/>
     <h2 style= "text-align: center;"><%= user.getName() %>'s Sent Messages</h2>
 
-    <hr/>
     <div id="chat">
+        <ul>
+            <%
+                List<Message> messages = (List<Message>) request.getAttribute("messages");
+                for (Message message : messages) {
+                    Instant time = message.getCreationTime();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE yyyy-MM-dd HH:mm:ss")
+                            .withZone(ZoneId.systemDefault());
 
+                    String timeString = formatter.format(time);
+            %>
+            <li><strong><%= timeString %>:</strong> <%= message.getContent() %></li>
+            <%
+                }
+            %>
+        </ul>
     </div>
     <hr/>
     <% } %>

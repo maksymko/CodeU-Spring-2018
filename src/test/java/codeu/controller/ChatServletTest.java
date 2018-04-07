@@ -135,7 +135,8 @@ public class ChatServletTest {
     Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
     Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
 
-    User fakeUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), "Soon to be edited");
+    User fakeUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(),
+            new ArrayList<>(), "Soon to be edited");
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
@@ -152,11 +153,13 @@ public class ChatServletTest {
     Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
     Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
 
-    User fakeUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), "Soon to be edited");
+    User fakeUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(),
+            new ArrayList<>(), "Soon to be edited");
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
+    UUID conversationId = UUID.randomUUID();
     Conversation fakeConversation =
-        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", Instant.now());
+        new Conversation(conversationId, UUID.randomUUID(), "test_conversation", Instant.now());
     Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
         .thenReturn(fakeConversation);
 
@@ -176,7 +179,8 @@ public class ChatServletTest {
     Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
     Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
 
-    User fakeUser = new User(UUID.randomUUID(), "test_username", "test_passord", Instant.now(), "Soon to be edited");
+    User fakeUser = new User(UUID.randomUUID(), "test_username", "test_passord", Instant.now(),
+            new ArrayList<>(), "Soon to be edited");
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =

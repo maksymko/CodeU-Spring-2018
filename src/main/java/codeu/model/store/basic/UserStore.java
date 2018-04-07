@@ -114,6 +114,11 @@ public class UserStore {
     return false;
   }
 
+  /** Returns number of users in database */
+  public int getNumUsers() {
+    return this.users.size();
+  }
+
   /**
    * Sets the List of Users stored by this UserStore. This should only be called once, when the data
    * is loaded from Datastore.
@@ -121,4 +126,12 @@ public class UserStore {
   public void setUsers(List<User> users) {
     this.users = users;
   }
+
+  /**
+   * Returns a copy of the list of all users.
+   */
+   public List<User> getUsers() {
+     return this.users;
+   }
+
 }
