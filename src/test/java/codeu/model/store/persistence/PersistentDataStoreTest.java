@@ -135,6 +135,7 @@ public class PersistentDataStoreTest {
 
     // load
     List<Message> resultMessages = persistentDataStore.loadMessages();
+    List<Message> resultMessagesAuthorOne = persistentDataStore.loadMessagesByUser(authorOne);
 
     // confirm that what we saved matches what we loaded
     Message resultMessageOne = resultMessages.get(0);
@@ -150,5 +151,14 @@ public class PersistentDataStoreTest {
     Assert.assertEquals(authorTwo, resultMessageTwo.getAuthorId());
     Assert.assertEquals(contentTwo, resultMessageTwo.getContent());
     Assert.assertEquals(creationTwo, resultMessageTwo.getCreationTime());
+
+    Assert.assertEquals(1, resultMessagesAuthorOne.size());
+    Message resultMessageAuthorOne = resultMessagesAuthorOne.get(0);
+    Assert.assertEquals(idOne, resultMessageAuthorOne.getId());
+    Assert.assertEquals(conversationOne, resultMessageAuthorOne.getConversationId());
+    Assert.assertEquals(authorOne, resultMessageAuthorOne.getAuthorId());
+    Assert.assertEquals(contentOne, resultMessageAuthorOne.getContent());
+    Assert.assertEquals(creationOne, resultMessageAuthorOne.getCreationTime());
+
   }
 }

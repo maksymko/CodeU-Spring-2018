@@ -90,8 +90,10 @@ public class AdminServletTest {
       .thenReturn(1);
 
     List<User> fakeUserList = new ArrayList<>();
-    User mostActiveUser = new User(mostActiveUserUUID, "James", "test_password", Instant.now());
-    User newestUser = new User(UUID.randomUUID(), "Jon", "test_password", Instant.now());
+    User mostActiveUser = new User(mostActiveUserUUID, "James", "test_password", Instant.now(),
+            new ArrayList<>(), "Soon to be edited");
+    User newestUser = new User(UUID.randomUUID(), "Jon", "test_password", Instant.now(),
+            new ArrayList<>(), "Soon to be edited");
     fakeUserList.add(mostActiveUser);
     fakeUserList.add(newestUser);
     Mockito.when(mockUserStore.getUsers())
