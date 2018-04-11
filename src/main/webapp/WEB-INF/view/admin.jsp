@@ -15,6 +15,8 @@
   <div id="container">
     <h1>Administration</h1>
     <hr>
+    <h2>Site Statistics</h2>
+    <p>Here are some site stats:</p>
     <ul>
       <% if (request.getAttribute("numUsers") != null) { %>
         <li>Users: <%= request.getAttribute("numUsers") %>
@@ -41,6 +43,17 @@
         </li>
       <% } %>
     </ul>
+    <hr>
+    <h2>Import Data</h2>
+    <form action="/admin" method="POST">
+      <select name="dataType">
+        <option value="RomeoJuliet">Romeo and Juliet</option>
+        <option value="GreatGatsby">The Great Gatsby</option>
+        <option value="MiceMen">Of Mice and Men</option>
+      </select>
+      <input type="submit" value="submit">
+    </form>
+    <hr>
   </div>
 </body>
 </html>
