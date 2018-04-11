@@ -64,9 +64,28 @@ public class UserStore {
     users = new ArrayList<>();
   }
 
-  /** Load a set of randomly-generated Message objects. */
+  /** Load Default Users. */
   public void loadTestData() {
+    users = new ArrayList<>();
     users.addAll(DefaultDataStore.getInstance().getAllUsers());
+  }
+
+  /** Load Romeo and Juliet Users. */
+  public void loadRomeoData() {
+    users = new ArrayList<>();
+    users.addAll(RomeoDataStore.getInstance().getAllUsers());
+  }
+
+  /** Load Great Gatsby Users. */
+  public void loadGatsbyData() {
+    users = new ArrayList<>();
+    users.addAll(GatsbyDataStore.getInstance().getAllUsers());
+  }
+
+  /** Load Of Mice and Men Users. */
+  public void loadMiceData() {
+    users = new ArrayList<>();
+    users.addAll(MiceDataStore.getInstance().getAllUsers());
   }
 
   /**
