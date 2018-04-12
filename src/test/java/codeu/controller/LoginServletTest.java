@@ -109,4 +109,44 @@ public class LoginServletTest {
             .setAttribute("error", "Invalid password.");
     Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
   }
+
+  @Test
+  public void testDoPost_ExistingUserPlainPassword() throws IOException, ServletException {
+    Mockito.when(mockRequest.getParameter("username")).thenReturn("test username");
+    Mockito.when(mockRequest.getParameter("password")).thenReturn("correct password");
+
+    UserStore mockUserStore = Mockito.mock(UserStore.class);
+    loginServlet.setUserStore(mockUserStore);
+    Mockito.when(mockUserStore.isUserRegistered("test username")).thenReturn(true);
+
+    User mockUser = Mockito.mock(User.class);
+    Mockito.when(mockUserStore.getUser("test username")).thenReturn(mockUser);
+    Mockito.when(mockUser.getPassword()).thenReturn("correct password");
+
+    loginServlet.doPost(mockRequest, mockResponse);
+
+    Mockito.verify(mockRequest)
+            .setAttribute("error", "Invalid password.");
+    Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
+  }
+
+  @Test
+  public void testDoPost_ExistingUserNullPassword() throws IOException, ServletException {
+    Mockito.when(mockRequest.getParameter("username")).thenReturn("test username");
+    Mockito.when(mockRequest.getParameter("password")).thenReturn("correct password");
+
+    UserStore mockUserStore = Mockito.mock(UserStore.class);
+    loginServlet.setUserStore(mockUserStore);
+    Mockito.when(mockUserStore.isUserRegistered("test username")).thenReturn(true);
+
+    User mockUser = Mockito.mock(User.class);
+    Mockito.when(mockUserStore.getUser("test username")).thenReturn(mockUser);
+    Mockito.when(mockUser.getPassword()).thenReturn(null);
+
+    loginServlet.doPost(mockRequest, mockResponse);
+
+    Mockito.verify(mockRequest)
+            .setAttribute("error", "Invalid password.");
+    Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
+  }
 }
