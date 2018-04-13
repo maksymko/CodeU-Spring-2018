@@ -37,18 +37,11 @@ public class ProfileServlet extends BaseServlet {
       return;
     }
     String about = user.getAbout();
-    List<Message> authorMessages = new ArrayList<>();
-    for (UUID conversationId : user.getConversationIds()){
-      List<Message> messages = messageStore.getMessagesInConversation(conversationId);
-      for(Message message: messages){
-        if(message.getAuthorId().equals(user.getId())){
-          authorMessages.add(message);
-        }
-      }
-    }
+    List<Message> authorMessages = messageStore.getMessagesByUser(user.getId());
+
+    request.setAttribute("messages", authorMessages);
     request.setAttribute("aboutme", about);
     request.setAttribute("view_user", user);
-    request.setAttribute("messages", authorMessages);
     request.getRequestDispatcher("/WEB-INF/view/profile.jsp").forward(request, response);
   }
 
