@@ -65,14 +65,61 @@ public class ConversationStore {
   }
 
   /**
-   * Load a set of randomly-generated Conversation objects.
-   *
-   * @return false if a error occurs.
+   * Load Test Conversations
    */
   public boolean loadTestData() {
+    conversations = new ArrayList<>();
     boolean loaded = false;
     try {
       conversations.addAll(DefaultDataStore.getInstance().getAllConversations());
+      loaded = true;
+    } catch (Exception e) {
+      loaded = false;
+      System.err.println("ERROR: Unable to establish initial store (conversations).");
+    }
+    return loaded;
+  }
+
+  /**
+   * Load Romeo and Juliet Conversations
+   */
+  public boolean loadRomeoData() {
+    conversations = new ArrayList<>();
+    boolean loaded = false;
+    try {
+      conversations.addAll(RomeoDataStore.getInstance().getAllConversations());
+      loaded = true;
+    } catch (Exception e) {
+      loaded = false;
+      System.err.println("ERROR: Unable to establish initial store (conversations).");
+    }
+    return loaded;
+  }
+
+  /**
+   * Load Great Gatsby Conversations
+   */
+  public boolean loadGatsbyData() {
+    conversations = new ArrayList<>();
+    boolean loaded = false;
+    try {
+      conversations.addAll(GatsbyDataStore.getInstance().getAllConversations());
+      loaded = true;
+    } catch (Exception e) {
+      loaded = false;
+      System.err.println("ERROR: Unable to establish initial store (conversations).");
+    }
+    return loaded;
+  }
+
+  /**
+   * Load Of Mice and Men Conversations
+   */
+  public boolean loadMiceData() {
+    conversations = new ArrayList<>();
+    boolean loaded = false;
+    try {
+      conversations.addAll(MiceDataStore.getInstance().getAllConversations());
       loaded = true;
     } catch (Exception e) {
       loaded = false;

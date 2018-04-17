@@ -67,14 +67,70 @@ public class MessageStore {
   }
 
   /**
-   * Load a set of randomly-generated Message objects.
+   * Load Default Message objects.
    *
    * @return false if an error occurs.
    */
   public boolean loadTestData() {
+    messages = new ArrayList<>();
     boolean loaded = false;
     try {
       messages.addAll(DefaultDataStore.getInstance().getAllMessages());
+      loaded = true;
+    } catch (Exception e) {
+      loaded = false;
+      System.out.println("ERROR: Unable to establish initial store (messages).");
+    }
+    return loaded;
+  }
+
+
+  /**
+   * Load Romeo and Juliet Message objects.
+   *
+   * @return false if an error occurs.
+   */
+  public boolean loadRomeoData() {
+    messages = new ArrayList<>();
+    boolean loaded = false;
+    try {
+      messages.addAll(RomeoDataStore.getInstance().getAllMessages());
+      loaded = true;
+    } catch (Exception e) {
+      loaded = false;
+      System.out.println("ERROR: Unable to establish initial store (messages).");
+    }
+    return loaded;
+  }
+
+  /**
+   * Load Great Gatsby Message objects.
+   *
+   * @return false if an error occurs.
+   */
+  public boolean loadGatsbyData() {
+    messages = new ArrayList<>();
+    boolean loaded = false;
+    try {
+      messages.addAll(GatsbyDataStore.getInstance().getAllMessages());
+      loaded = true;
+    } catch (Exception e) {
+      loaded = false;
+      System.out.println("ERROR: Unable to establish initial store (messages).");
+    }
+    return loaded;
+  }
+
+  /**
+   * Load Of Mice and Men Message objects.
+   *
+   * @return false if an error occurs.
+   */
+  public boolean loadMiceData() {
+    messages = new ArrayList<>();
+    boolean loaded = false;
+    try {
+      messages.addAll(MiceDataStore.getInstance().getAllMessages());
       loaded = true;
     } catch (Exception e) {
       loaded = false;
