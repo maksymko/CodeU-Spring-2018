@@ -100,7 +100,7 @@ public class GatsbyDataStore {
 
         for (int i = 0; i < DEFAULT_USER_COUNT; i++) {
             User user = new User(UUID.randomUUID(), randomUsernames.get(i),
-                    BCrypt.hashpw("password", BCrypt.gensalt()), Instant.now(), new ArrayList<>(), "Soon to be edited");
+                    BCrypt.hashpw("password", BCrypt.gensalt()), Instant.now(), "Soon to be edited");
             PersistentStorageAgent.getInstance().writeThrough(user);
             users.add(user);
         }
@@ -122,7 +122,6 @@ public class GatsbyDataStore {
             Conversation conversation = getRandomElement(conversations);
             User author = getRandomElement(users);
             String content = getRandomMessageContent();
-            author.addConversationIds(conversation.getId());
             Message message =
                     new Message(
                             UUID.randomUUID(), conversation.getId(), author.getId(), content, Instant.now());
