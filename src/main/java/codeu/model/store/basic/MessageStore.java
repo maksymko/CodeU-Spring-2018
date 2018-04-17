@@ -15,6 +15,7 @@
 package codeu.model.store.basic;
 
 import codeu.model.data.Message;
+import codeu.model.store.persistence.PersistentDataStoreException;
 import codeu.model.store.persistence.PersistentStorageAgent;
 import java.util.ArrayList;
 import java.util.List;
@@ -173,5 +174,20 @@ public class MessageStore {
    */
   public List<Message> getMessages() {
     return this.messages;
+  }
+
+  /**
+   * Returns a copy of the list of messages written by a specific user
+   */
+  public List<Message> getMessagesByUser(UUID userId) {
+
+    try {
+      return PersistentStorageAgent.getInstance().loadMessagesByUser(userId);
+    } catch (PersistentDataStoreException e) {
+      System.err.println("Server didn't start correctly. An error occurred during Datastore load!");
+      System.err.println("This is usually caused by loading data that's in an invalid format.");
+      System.err.println("Check the stack trace to see exactly what went wrong.");
+      throw new RuntimeException(e);
+    }
   }
 }
