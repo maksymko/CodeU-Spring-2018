@@ -64,8 +64,14 @@ public class RegisterServlet extends HttpServlet {
       return;
     }
 
+    //Doesn't let someone register with default admin username and different password
+    if (username.equals("admin") && !password.equals("admin")){
+      request.setAttribute("error", "That username is for admin only.");
+      request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+      return;
+    }
+
     User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now(), new ArrayList<>(), about);
-    userStore.addUser(user);
 
     //Checks if someone registered the default admin account
     //Username: admin
@@ -76,6 +82,7 @@ public class RegisterServlet extends HttpServlet {
       }
     }
 
+    userStore.addUser(user);
     response.sendRedirect("/login");
   }
 }

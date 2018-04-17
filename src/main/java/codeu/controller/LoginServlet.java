@@ -74,7 +74,7 @@ public class LoginServlet extends HttpServlet {
       User user = userStore.getUser(username);
       if(BCrypt.checkpw(password, user.getPassword())) {
         if (user.getIsAdmin()){
-          request.getSession().setAttribute("admin",true);
+          request.getSession().setAttribute("admin", true);
         }
         request.getSession().setAttribute("user", username);
         response.sendRedirect("/conversations");
