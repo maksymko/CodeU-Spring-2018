@@ -67,6 +67,15 @@ public class RegisterServlet extends HttpServlet {
     User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now(), new ArrayList<>(), about);
     userStore.addUser(user);
 
+    //Checks if someone registered the default admin account
+    //Username: admin
+    //Password: admin
+    if (username.equals("admin")){
+      if (password.equals("admin")){
+        user.setAsAdmin();
+      }
+    }
+
     response.sendRedirect("/login");
   }
 }
