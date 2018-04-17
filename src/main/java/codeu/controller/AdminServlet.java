@@ -22,6 +22,12 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminServlet extends BaseServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    //Makes sure person accessing admin page is an admin
+    if (request.getSession().getAttribute("admin") == null){
+      response.sendRedirect("/");
+      return;
+    }
+    
     request.setAttribute("numUsers", numUsers());
     request.setAttribute("numConvos", numConvos());
     request.setAttribute("numMessages", numMessages());
