@@ -112,4 +112,31 @@ public class AdminServlet extends BaseServlet {
     return this.userStore.getUser(wordiestUserUUID).getName();
   }
 
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+          throws IOException, ServletException {
+
+    String dataType = request.getParameter("dataType");
+
+    if (dataType != null) {
+      if (dataType.equals("RomeoJuliet")) {
+        userStore.loadRomeoData();
+        conversationStore.loadRomeoData();
+        messageStore.loadRomeoData();
+        response.sendRedirect("/admin");
+      }
+      if (dataType.equals("GreatGatsby")) {
+        userStore.loadGatsbyData();
+        conversationStore.loadGatsbyData();
+        messageStore.loadGatsbyData();
+        response.sendRedirect("/admin");
+      }
+      if (dataType.equals("MiceMen")) {
+        userStore.loadMiceData();
+        conversationStore.loadMiceData();
+        messageStore.loadMiceData();
+        response.sendRedirect("/admin");
+      }
+    }
+  }
 }

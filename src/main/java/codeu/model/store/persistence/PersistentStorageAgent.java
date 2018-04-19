@@ -19,6 +19,7 @@ import codeu.model.data.Message;
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentDataStore;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * This class is the interface between the application and PersistentDataStore, which handles
@@ -88,6 +89,18 @@ public class PersistentStorageAgent {
   public List<Message> loadMessages() throws PersistentDataStoreException {
     return persistentDataStore.loadMessages();
   }
+
+  /**
+   * Retrieve all Message objects whose authorId matches userId from the Datastore service.
+   * The returned list may be empty.
+   *
+   * @throws PersistentDataStoreException if an error was detected during the load from the
+   *     Datastore service
+   */
+  public List<Message> loadMessagesByUser(UUID userId) throws PersistentDataStoreException{
+    return persistentDataStore.loadMessagesByUser(userId);
+  }
+
 
   /** Write a User object to the Datastore service. */
   public void writeThrough(User user) {

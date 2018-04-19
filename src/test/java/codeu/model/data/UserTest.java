@@ -30,13 +30,11 @@ public class UserTest {
     Instant creation = Instant.now();
     String password = "password";
     String about = "Soon to be edited";
-    List<UUID> conversationIds = new ArrayList<>();
-    User user = new User(id, name, password, creation, conversationIds, about);
+    User user = new User(id, name, password, creation, about);
 
     Assert.assertEquals(id, user.getId());
     Assert.assertEquals(name, user.getName());
     Assert.assertEquals(password, user.getPassword());
     Assert.assertEquals(creation, user.getCreationTime());
-    Assert.assertEquals(conversationIds, user.getConversationIds());
   }
 }

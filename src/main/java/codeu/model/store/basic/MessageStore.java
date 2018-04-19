@@ -15,6 +15,7 @@
 package codeu.model.store.basic;
 
 import codeu.model.data.Message;
+import codeu.model.store.persistence.PersistentDataStoreException;
 import codeu.model.store.persistence.PersistentStorageAgent;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,14 +67,70 @@ public class MessageStore {
   }
 
   /**
-   * Load a set of randomly-generated Message objects.
+   * Load Default Message objects.
    *
    * @return false if an error occurs.
    */
   public boolean loadTestData() {
+    messages = new ArrayList<>();
     boolean loaded = false;
     try {
       messages.addAll(DefaultDataStore.getInstance().getAllMessages());
+      loaded = true;
+    } catch (Exception e) {
+      loaded = false;
+      System.out.println("ERROR: Unable to establish initial store (messages).");
+    }
+    return loaded;
+  }
+
+
+  /**
+   * Load Romeo and Juliet Message objects.
+   *
+   * @return false if an error occurs.
+   */
+  public boolean loadRomeoData() {
+    messages = new ArrayList<>();
+    boolean loaded = false;
+    try {
+      messages.addAll(RomeoDataStore.getInstance().getAllMessages());
+      loaded = true;
+    } catch (Exception e) {
+      loaded = false;
+      System.out.println("ERROR: Unable to establish initial store (messages).");
+    }
+    return loaded;
+  }
+
+  /**
+   * Load Great Gatsby Message objects.
+   *
+   * @return false if an error occurs.
+   */
+  public boolean loadGatsbyData() {
+    messages = new ArrayList<>();
+    boolean loaded = false;
+    try {
+      messages.addAll(GatsbyDataStore.getInstance().getAllMessages());
+      loaded = true;
+    } catch (Exception e) {
+      loaded = false;
+      System.out.println("ERROR: Unable to establish initial store (messages).");
+    }
+    return loaded;
+  }
+
+  /**
+   * Load Of Mice and Men Message objects.
+   *
+   * @return false if an error occurs.
+   */
+  public boolean loadMiceData() {
+    messages = new ArrayList<>();
+    boolean loaded = false;
+    try {
+      messages.addAll(MiceDataStore.getInstance().getAllMessages());
       loaded = true;
     } catch (Exception e) {
       loaded = false;
@@ -117,5 +174,20 @@ public class MessageStore {
    */
   public List<Message> getMessages() {
     return this.messages;
+  }
+
+  /**
+   * Returns a copy of the list of messages written by a specific user
+   */
+  public List<Message> getMessagesByUser(UUID userId) {
+
+    try {
+      return PersistentStorageAgent.getInstance().loadMessagesByUser(userId);
+    } catch (PersistentDataStoreException e) {
+      System.err.println("Server didn't start correctly. An error occurred during Datastore load!");
+      System.err.println("This is usually caused by loading data that's in an invalid format.");
+      System.err.println("Check the stack trace to see exactly what went wrong.");
+      throw new RuntimeException(e);
+    }
   }
 }
