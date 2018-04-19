@@ -64,6 +64,7 @@ public class RegisterServlet extends HttpServlet {
       return;
     }
 
+
     //Doesn't let someone register with default admin username and different password
     if (username.equals("admin") && !password.equals("admin")){
       request.setAttribute("error", "That username is for admin only.");
