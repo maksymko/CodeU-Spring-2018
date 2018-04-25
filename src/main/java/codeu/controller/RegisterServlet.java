@@ -72,7 +72,7 @@ public class RegisterServlet extends HttpServlet {
       return;
     }
 
-    User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now(), new ArrayList<>(), about);
+    User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now(), about);
 
     //Checks if someone registered the default admin account
     //Username: admin
