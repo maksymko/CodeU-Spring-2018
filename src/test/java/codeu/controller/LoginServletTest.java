@@ -123,11 +123,14 @@ public class LoginServletTest {
     Mockito.when(mockUserStore.getUser("test username")).thenReturn(mockUser);
     Mockito.when(mockUser.getPassword()).thenReturn("correct password");
 
+    HttpSession mockSession = Mockito.mock(HttpSession.class);
+    Mockito.when(mockRequest.getSession()).thenReturn(mockSession);
+
     loginServlet.doPost(mockRequest, mockResponse);
 
-    Mockito.verify(mockRequest)
-            .setAttribute("error", "Invalid password.");
-    Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
+    Mockito.verify(mockUserStore, Mockito.never()).addUser(Mockito.any(User.class));
+    Mockito.verify(mockSession).setAttribute("user", "test username");
+    Mockito.verify(mockResponse).sendRedirect("/conversations");
   }
 
   @Test
@@ -142,6 +145,9 @@ public class LoginServletTest {
     User mockUser = Mockito.mock(User.class);
     Mockito.when(mockUserStore.getUser("test username")).thenReturn(mockUser);
     Mockito.when(mockUser.getPassword()).thenReturn(null);
+
+    HttpSession mockSession = Mockito.mock(HttpSession.class);
+    Mockito.when(mockRequest.getSession()).thenReturn(mockSession);
 
     loginServlet.doPost(mockRequest, mockResponse);
 
