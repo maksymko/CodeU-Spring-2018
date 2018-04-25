@@ -72,7 +72,15 @@ public class LoginServlet extends HttpServlet {
 
     if (userStore.isUserRegistered(username)) {
       User user = userStore.getUser(username);
-      if(BCrypt.checkpw(password, user.getPassword())) {
+      String usersPassword = user.getPassword();
+
+      // All BCrypt hashed passwords start with the type of hash '2a'
+      // followed by the number of rounds '10', seperated with '$'
+      if (usersPassword != null &&
+          ((usersPassword.contains("$2a$10$") && BCrypt.checkpw(password, usersPassword)) ||
+          (usersPassword.equals(password))
+         )
+      ) {
         if (user.getIsAdmin()){
           request.getSession().setAttribute("admin", true);
         }
