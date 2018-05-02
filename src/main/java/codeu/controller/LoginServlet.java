@@ -67,33 +67,39 @@ public class LoginServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
-    String username = request.getParameter("username");
-    String password = request.getParameter("password");
+    if(request.getParameter("login") != null){
+      String username = request.getParameter("username");
+      String password = request.getParameter("password");
 
-    if (userStore.isUserRegistered(username)) {
-      User user = userStore.getUser(username);
-      String usersPassword = user.getPassword();
+      if (userStore.isUserRegistered(username)) {
+        User user = userStore.getUser(username);
+        String usersPassword = user.getPassword();
 
-      // All BCrypt hashed passwords start with the type of hash '2a'
-      // followed by the number of rounds '10', seperated with '$'
-      if (usersPassword != null &&
-          ((usersPassword.contains("$2a$10$") && BCrypt.checkpw(password, usersPassword)) ||
-          (usersPassword.equals(password))
-         )
-      ) {
-        if (user.getIsAdmin()){
-          request.getSession().setAttribute("admin", true);
+        // All BCrypt hashed passwords start with the type of hash '2a'
+        // followed by the number of rounds '10', seperated with '$'
+        if (usersPassword != null &&
+            ((usersPassword.contains("$2a$10$") && BCrypt.checkpw(password, usersPassword)) ||
+            (usersPassword.equals(password))
+           )
+        ) {
+          if (user.getIsAdmin()){
+            request.getSession().setAttribute("admin", true);
+          }
+          request.getSession().setAttribute("user", username);
+          response.sendRedirect("/conversations");
         }
-        request.getSession().setAttribute("user", username);
-        response.sendRedirect("/conversations");
+        else {
+          request.setAttribute("error", "Invalid password.");
+          request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
+        }
       }
       else {
-        request.setAttribute("error", "Invalid password.");
+        request.setAttribute("error", "That username was not found.");
         request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
       }
     }
-    else {
-      request.setAttribute("error", "That username was not found.");
+    else if(request.getParameter("logout") != null){
+      request.getSession().setAttribute("user", null);
       request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
     }
   }
