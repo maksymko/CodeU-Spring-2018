@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Admin</title>
-  <link rel="stylesheet" href="/css/main.css">
+  <%@ include file = "partials/CSS.jsp" %>
 </head>
 <body>
 
@@ -55,5 +55,4 @@
     </form>
     <hr>
   </div>
-</body>
-</html>
+<%@ include file = "partials/footer.jsp" %>

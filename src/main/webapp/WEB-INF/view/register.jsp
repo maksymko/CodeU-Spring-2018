@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Register</title>
-  <link rel="stylesheet" href="/css/main.css">
+  <%@ include file = "partials/CSS.jsp" %>
   <style>
     label {
       display: inline-block;
@@ -40,5 +40,4 @@
     <button type="submit">Submit</button>
   </form>
 </div>
-</body>
-</html>
+<%@ include file = "partials/footer.jsp" %>
