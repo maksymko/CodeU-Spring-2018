@@ -6,11 +6,7 @@
 </head>
 <body>
 
-  <nav>
-    <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
-    <a href="/about.jsp">About</a>
-  </nav>
+  <%@ include file = "partials/navbar.jsp" %>
 
   <div id="container">
     <h1>Administration</h1>

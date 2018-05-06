@@ -10,4 +10,7 @@
       <a href="/register">Register</a>
     <% } %>
     <a href="/about.jsp">About</a>
+    <% if(request.getSession().getAttribute("admin") != null){ %>
+      <a href="/admin">Admin</a>
+    <% } %>
   </nav>
