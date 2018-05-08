@@ -2,15 +2,11 @@
 <html>
 <head>
   <title>Admin</title>
-  <link rel="stylesheet" href="/css/main.css">
+  <%@ include file = "partials/CSS.jsp" %>
 </head>
 <body>
 
-  <nav>
-    <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
-    <a href="/about.jsp">About</a>
-  </nav>
+  <%@ include file = "partials/navbar.jsp" %>
 
   <div id="container">
     <h1>Administration</h1>
@@ -55,5 +51,4 @@
     </form>
     <hr>
   </div>
-</body>
-</html>
+<%@ include file = "partials/footer.jsp" %>

@@ -17,24 +17,12 @@
 <html>
 <head>
   <title>CodeU Chat App</title>
-  <link rel="stylesheet" href="/css/main.css">
+  <%@ include file = "WEB-INF/view/partials/CSS.jsp" %>
 </head>
 <body>
 
-  <nav>
-    <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
-    <% if(request.getSession().getAttribute("user") != null){ %>
-      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-      <a href="/profile/<%= request.getSession().getAttribute("user") %>"><%= request.getSession().getAttribute("user") %> Profile Page</a>
-      <a href="/login">Logout</a>
-    <% } else{ %>
-      <a href="/login">Login</a>
-      <a href="/register">Register</a>
-    <% } %>
-    <a href="/about.jsp">About</a>
-  </nav>
-
+  <%@ include file = "WEB-INF/view/partials/navbar.jsp" %>
+  
   <div id="container">
     <div
       style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
@@ -92,5 +80,5 @@
       </p>
     </div>
   </div>
-</body>
-</html>
+
+<%@ include file = "WEB-INF/view/partials/footer.jsp" %>
