@@ -55,10 +55,80 @@ nav a {
 
 h1 {
   color: #757575;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: normal;
+  text-transform: uppercase;
+  line-height: 46px;
+  font-size: 43px;
+  margin: 0 0 23px 0;
+  color: #757575;
+}
+
+h2 {
+  font-family: 'Cantarell', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin: 0 0 23px 0;
+}
+
+p {
+  font-family: 'Cantarell', sans-serif;
+  font-size: 17px;
+  line-height: 23px;
+  margin: 0 0 23px 0;
 }
 
 input {
   font-size: 18px;
+}
+
+.panel-footer{
+  background-color:transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+.home-h1{
+  color: white;
+  font-size: 200px;
+}
+
+.home-h2{
+  font-size: 50px;
+  color: white;
+}
+
+.background-home-div{
+  box-sizing:border-box;
+  width: 100%;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: 3%;
+  background-image: url(images/background.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.no-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.home-btn{
+  box-sizing:border-box;
+  background: white;
+  border: white;
+  color: #222222;
+}
+
+.home-btn:hover{
+  background: lightgray;
+  border: lightgray;
+  color: #222222;
 }
 
 button {

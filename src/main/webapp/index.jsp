@@ -23,22 +23,26 @@
 
   <%@ include file = "WEB-INF/view/partials/navbar.jsp" %>
 
-  <div id="container">
-    <div
-      style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
+  <div class="background-home-div no-padding">
+    <br><br><br><br><br>
+    <h1 class="text-center home-h1">WELCOME</h1>
+    <br><br><br>
+    <h2 class="text-center home-h2">THIS IS CODEU CHAT</h2>
+    <br><br>
 
-      <h1>CodeU Chat App</h1>
-      <h2>Welcome!</h2>
-
-      <ul>
-        <li><a href="/login">Login</a> to get started.</li>
-        <li>Go to the <a href="/conversations">conversations</a> page to
-            create or join a conversation.</li>
-        <li>View the <a href="/about.jsp">about</a> page to learn more about the
-            project.</li>
-        <li>You can <a href="/testdata">load test data</a> to fill the site with
-            example data.</li>
-      </ul>
+    <div class="panel-footer row">
+      <div class="col-xs-6 text-right" style="padding-right:150px; box-sizing:border-box;">
+        <% if(request.getSession().getAttribute("user") != null){ %>
+        <a href="/conversations" class="btn btn-default btn-lg home-btn">Get Chatting!</a>
+        <% } else{ %>
+        <a href="/register" class="btn btn-default btn-lg home-btn">Get Chatting!</a>
+        <% } %>
+      </div>
+      <div class="col-xs-6 text-left" style="padding-left:150px; box-sizing:border-box;">
+        <a href="/about.jsp" class="btn btn-default btn-lg home-btn">Learn More!</a>
+      </div>
     </div>
+    <div class="clearfix"></div>
+    <br><br><br>
   </div>
 <%@ include file = "WEB-INF/view/partials/footer.jsp" %>
