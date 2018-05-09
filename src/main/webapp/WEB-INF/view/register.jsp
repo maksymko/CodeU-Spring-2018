@@ -29,6 +29,8 @@
     <label for="password">Password: </label>
     <input type="password" name="password" id="password">
     <br/><br/>
+    <p><a href="/login">Already have an account?</a></p>
+    <br/>
     <button type="submit">Submit</button>
   </form>
 </div>
