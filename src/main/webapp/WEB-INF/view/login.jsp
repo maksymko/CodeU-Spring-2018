@@ -37,15 +37,17 @@
     <% } %>
 
    <% if(request.getSession().getAttribute("user") == null) {%>
-        <form action="/login" method="POST">
-       <label for="username">Username: </label>
-       <input type="text" name="username" id="username">
-       <br/>
-       <label for="password">Password: </label>
-       <input type="password" name="password" id="password">
-       <br/><br/>
-       <button type="submit" value="login" name="login">Login</button>
-        </form>
+    <form action="/login" method="POST">
+      <label for="username">Username: </label>
+      <input type="text" name="username" id="username">
+      <br/>
+      <label for="password">Password: </label>
+      <input type="password" name="password" id="password">
+      <br/><br/>
+      <p><a href="/register">Don't have an account?</a></p>
+      <br/>
+      <button type="submit" value="login" name="login">Login</button>
+    </form>
    <% } else {%>
         <form action="/login" method="POST">
        <button type="submit" value="logout" name="logout">Logout</button>
