@@ -29,20 +29,20 @@
     <br><br><br>
     <h2 class="text-center home-h2">THIS IS CODEU CHAT</h2>
     <br><br>
-
     <div class="panel-footer row">
-      <div class="col-xs-6 text-right" style="padding-right:150px; box-sizing:border-box;">
+      <div class="col-xs-6 text-right" style="padding-right: 150px; box-sizing:border-box;">
         <% if(request.getSession().getAttribute("user") != null){ %>
         <a href="/conversations" class="btn btn-default btn-lg home-btn">Get Chatting!</a>
         <% } else{ %>
         <a href="/register" class="btn btn-default btn-lg home-btn">Get Chatting!</a>
         <% } %>
       </div>
-      <div class="col-xs-6 text-left" style="padding-left:150px; box-sizing:border-box;">
+      <div class="col-xs-6 text-left" style="padding-left: 150px; box-sizing:border-box;">
         <a href="/about.jsp" class="btn btn-default btn-lg home-btn">Learn More!</a>
       </div>
     </div>
     <div class="clearfix"></div>
     <br><br><br>
+
   </div>
 <%@ include file = "WEB-INF/view/partials/footer.jsp" %>
