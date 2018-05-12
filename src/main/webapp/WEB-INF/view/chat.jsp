@@ -27,16 +27,43 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 <head>
   <title><%= conversation.getTitle() %></title>
   <%@ include file = "partials/CSS.jsp" %>
+  <link rel="stylesheet" href="/css/main.css" type="text/css">
 
   <script>
     // scroll the chat div to the bottom
+    function beginChat() {
+      scrollChat();
+      pollChatData();
+    }
     function scrollChat() {
       var chatDiv = document.getElementById('chat');
       chatDiv.scrollTop = chatDiv.scrollHeight;
     };
+
+    function pollChatData() {
+      setTimeout(function() {
+        $.ajax({
+            type: "GET",
+            data: { "chat_name": "<%= conversation.getTitle() %>" },
+            url: "/conversation_data", success: function(data) {
+
+            $("#chat ul").empty();
+            data.forEach(function (item, index) {
+              const profileLink = '<a href="/profile/' + item.user + '">' + item.user + "</a>";
+              var message = "<li><strong>" + profileLink + "</strong>: " + item.content + "</li>";
+              $("#chat ul").append(message);
+            })
+
+            //Setup the next poll recursively
+            pollChatData();
+          }, dataType: "json"});
+      }(), 5000);
+    };
   </script>
 </head>
-<body onload="scrollChat()">
+
+
+<body onload="beginChat()">
 
   <%@ include file = "partials/navbar.jsp" %>
 
@@ -48,21 +75,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     <hr/>
 
     <div id="chat">
-      <ul>
-    <%
-      for (Message message : messages) {
-        String author = UserStore.getInstance()
-          .getUser(message.getAuthorId()).getName();
-    %>
-      <li>
-        <strong>
-          <a href="/profile/<%= author %>"><%= author %></a>:
-        </strong>
-        <%= message.getContent() %></li>
-    <%
-      }
-    %>
-      </ul>
+      <ul></ul>
     </div>
 
     <hr/>
@@ -80,4 +93,5 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     <hr/>
 
   </div>
+
 <%@ include file = "partials/footer.jsp" %>
