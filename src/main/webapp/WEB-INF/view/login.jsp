@@ -17,22 +17,11 @@
 <html>
 <head>
   <title>Login</title>
-  <link rel="stylesheet" href="/css/main.css">
+  <%@ include file = "partials/CSS.jsp" %>
 </head>
 <body>
 
-  <nav>
-    <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
-    <% if(request.getSession().getAttribute("user") != null){ %>
-      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-      <a href="/login">Logout</a>
-    <% } else{ %>
-      <a href="/login">Login</a>
-      <a href="/register">Register</a>
-    <% } %>
-    <a href="/about.jsp">About</a>
-  </nav>
+  <%@ include file = "partials/navbar.jsp" %>
 
   <div id="container">
     <h1>
@@ -48,20 +37,21 @@
     <% } %>
 
    <% if(request.getSession().getAttribute("user") == null) {%>
-        <form action="/login" method="POST">
-       <label for="username">Username: </label>
-       <input type="text" name="username" id="username">
-       <br/>
-       <label for="password">Password: </label>
-       <input type="password" name="password" id="password">
-       <br/><br/>
-       <button type="submit" value="login" name="login">Login</button>
-        </form>
+    <form action="/login" method="POST">
+      <label for="username">Username: </label>
+      <input type="text" name="username" id="username">
+      <br/>
+      <label for="password">Password: </label>
+      <input type="password" name="password" id="password">
+      <br/><br/>
+      <p><a href="/register">Don't have an account?</a></p>
+      <br/>
+      <button type="submit" value="login" name="login">Login</button>
+    </form>
    <% } else {%>
         <form action="/login" method="POST">
        <button type="submit" value="logout" name="logout">Logout</button>
         </form>
    <% } %>
   </div>
-</body>
-</html>
+<%@ include file = "partials/footer.jsp" %>

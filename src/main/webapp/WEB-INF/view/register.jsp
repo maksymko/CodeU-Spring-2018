@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Register</title>
-  <link rel="stylesheet" href="/css/main.css">
+  <%@ include file = "partials/CSS.jsp" %>
   <style>
     label {
       display: inline-block;
@@ -12,15 +12,7 @@
 </head>
 <body>
 
-<nav>
-  <a id="navTitle" href="/">CodeU Chat App</a>
-  <a href="/conversations">Conversations</a>
-  <% if (request.getSession().getAttribute("user") != null) { %>
-  <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-  <% } else { %>
-  <a href="/login">Login</a>
-  <% } %>
-</nav>
+  <%@ include file = "partials/navbar.jsp" %>
 
 <div id="container">
   <h1>Register</h1>
@@ -37,8 +29,9 @@
     <label for="password">Password: </label>
     <input type="password" name="password" id="password">
     <br/><br/>
+    <p><a href="/login">Already have an account?</a></p>
+    <br/>
     <button type="submit">Submit</button>
   </form>
 </div>
-</body>
-</html>
+<%@ include file = "partials/footer.jsp" %>

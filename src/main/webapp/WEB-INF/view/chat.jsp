@@ -26,7 +26,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 <html>
 <head>
   <title><%= conversation.getTitle() %></title>
-  <link rel="stylesheet" href="/css/main.css" type="text/css">
+  <%@ include file = "partials/CSS.jsp" %>
 
   <script>
     // scroll the chat div to the bottom
@@ -38,19 +38,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 </head>
 <body onload="scrollChat()">
 
-  <nav>
-    <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
-      <% if (request.getSession().getAttribute("user") != null) { %>
-    <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-    <a href="/profile/<%= request.getSession().getAttribute("user") %>"><%= request.getSession().getAttribute("user") %> Profile Page</a>
-    <a href="/login">Logout</a>
-    <% } else { %>
-      <a href="/login">Login</a>
-      <a href="/register">Register</a>
-    <% } %>
-    <a href="/about.jsp">About</a>
-  </nav>
+  <%@ include file = "partials/navbar.jsp" %>
 
   <div id="container">
 
@@ -92,6 +80,4 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     <hr/>
 
   </div>
-
-</body>
-</html>
+<%@ include file = "partials/footer.jsp" %>
