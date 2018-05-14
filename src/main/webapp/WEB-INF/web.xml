@@ -96,4 +96,14 @@
     <url-pattern>/testdata</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>ConversationDataServlet</servlet-name>
+    <servlet-class>codeu.controller.ConversationDataServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ConversationDataServlet</servlet-name>
+    <url-pattern>/conversation_data</url-pattern>
+  </servlet-mapping>
+
 </web-app>
