@@ -47,26 +47,4 @@ public class ProfileServlet extends BaseServlet {
     request.setAttribute("view_user", user);
     request.getRequestDispatcher("/WEB-INF/view/profile.jsp").forward(request, response);
   }
-
-  /**
-   * This function fires when a user submit the form on the profile page. It gets the logged-in
-   * username from the session, the conversation title from the URL, and the chat message from the
-   * submitted form data.
-   */
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws IOException, ServletException { 
-    String userValue = request.getParameter("message");
-    String username = (String) request.getSession().getAttribute("user");
-    User user = userStore.getUser(username);
-      if (username == null) {
-        // user is not logged in, don't let see other users
-        response.sendRedirect("/login");
-        return;
-      }
-    user.setAbout(userValue);
-
-    response.sendRedirect(user.getName());
-
-  }
 }

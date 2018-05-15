@@ -19,6 +19,7 @@
 <%@ page import="java.time.Instant" %>
 <%@ page import="codeu.model.data.User" %>
 <%@ page import="codeu.model.data.Message" %>
+<%@ page import="codeu.model.data.Moment" %>
 
 <% User user = (User) request.getAttribute("view_user"); %>
 <% String about = (String) request.getAttribute("aboutme"); %>
@@ -51,23 +52,46 @@
     <h2 class="error"><%= request.getAttribute("error") %></h2>
     <% } else { %>
 
-    <h1 style= "text-align: center;"><%= user.getName() %>'s Profile Page</h1>
-    <hr/>
-    <h2 style= "text-align: center;"> About <%= user.getName() %>
-    <% if( user.getName().equals(request.getSession().getAttribute("user")) ) { %>
-      <h3 style= "text-align: center;"> Edit your About Me (only you can see this) </h3>
-       <form action="/profile/" style= "text-align: center;" method="POST">
-          <input type="text" name="message" value="<%= about %>">
-          <br>
-          <input type="submit" value="Submit">
-        </form>
-    <% } else { %>
-      <p style="color: red"><%= about %></p>
-    <% } %>
-    </h2>
-    <hr/>
-    <h2 style= "text-align: center;"><%= user.getName() %>'s Sent Messages</h2>
+    <h1 style= "text-align: center;"><%= user.getName() %>'s Profile Page
+     <% if( user.getName().equals(request.getSession().getAttribute("user")) ) { %>
+     <form action="/profileEdit" style= "text-align: center;">
+         <input type="submit" value="Edit My Profile" >
+     </form>
+     <% } %>
+    </h1>
 
+    <h2 style= "text-align: center;"> About <%= user.getName() %></h2>
+      <p style="color: red; text-align: center"><%= about %></p>
+    <hr/>
+
+     <h2 style= "text-align: center;"><%= user.getName() %>'s Moments</h2>
+     <div>
+         <ul id="moments">
+             <%
+                 List<Moment> moments = (List<Moment>) request.getAttribute("moments");
+                 for (Moment moment : moments) {
+                     Instant time = moment.getCreationTime();
+                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE yyyy-MM-dd HH:mm:ss")
+                             .withZone(ZoneId.systemDefault());
+
+                     String timeString = formatter.format(time);
+             %>
+             <li> <div class="container">
+                 <%= moment.getContent() %> <br>
+                 <em><%= timeString %>:</em>
+                 <% if(moment.getLocation()!=null) %> <em><%= moment.getLocation() %>:</em>
+             </div> </li>
+             <% } %>
+         </ul>
+         <% if(moments.isEmpty()){ %>
+         <div style= "text-align: center;font-style:italic; color:grey;">
+             <%= user.getName() %> currently has no moments.
+         </div>
+         <% } %>
+     </div>
+    <hr>
+
+    <h2 style= "text-align: center;"><%= user.getName() %>'s Sent Messages</h2>
     <div id="chat">
         <ul>
             <%
