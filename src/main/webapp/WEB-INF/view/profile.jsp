@@ -60,9 +60,9 @@
      <% } %>
     </h1>
 
-    <h2 style= "text-align: center;"> About <%= user.getName() %></h2>
+    <h2 style= "text-align: center;"> About <%= user.getName() %>
       <p style="color: red; text-align: center"><%= about %></p>
-    <hr/>
+    </h2>
 
      <h2 style= "text-align: center;"><%= user.getName() %>'s Moments</h2>
      <div>
@@ -77,10 +77,11 @@
                      String timeString = formatter.format(time);
              %>
              <li> <div class="container">
-                 <%= moment.getContent() %> <br>
-                 <em><%= timeString %>:</em>
-                 <% if(moment.getLocation()!=null) %> <em><%= moment.getLocation() %>:</em>
+                 <strong><%= moment.getContent() %></strong> <br>
+                 <em><%= timeString %></em>
+                 <% if(moment.getLocation()!="") %> <em>@<%= moment.getLocation() %></em>
              </div> </li>
+             <hr>
              <% } %>
          </ul>
          <% if(moments.isEmpty()){ %>

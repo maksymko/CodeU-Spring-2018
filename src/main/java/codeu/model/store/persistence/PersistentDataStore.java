@@ -232,7 +232,8 @@ public class PersistentDataStore {
     // Retrieve moments written by user from the datastore.
     Filter propertyFilter =
             new FilterPredicate("user_uuid", FilterOperator.EQUAL, userId.toString());
-    Query query = new Query("moments").setFilter(propertyFilter);
+    Query query = new Query("moments").setFilter(propertyFilter)
+            .addSort("creation_time", Query.SortDirection.DESCENDING);
     return loadMomentsFromQuery(query);
   }
 

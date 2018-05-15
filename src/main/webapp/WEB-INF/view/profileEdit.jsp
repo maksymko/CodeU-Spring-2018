@@ -41,8 +41,7 @@
     <hr>
     <h2 style= "text-align: center;">Add My Moment</h2>
         <form action="/profileEdit" style= "text-align: center;" method="POST">
-             <textarea name="moment" rows="8" cols=40px required>
-             </textarea>
+             <textarea name="moment" rows="8" cols=40px required></textarea>
             <br>
             <input type="text" name="location" placeholder="Where are you?">
             <input type="submit" value="Submit" name="submit_moment">
