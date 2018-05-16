@@ -32,16 +32,24 @@
         <strong>Team:</strong>
         <ul>
           <li>
-            Bailey Pearson
+            <strong>Bailey Pearson</strong>
+            <br>
+            Software Engineering @ Rochester Institute of Technology 2021
           </li>
           <li>
-            James Baker
+            <strong>James Baker</strong>
+            <br>
+            Mathematics and Computer Science @ Massachusetts Institute of Technology 2019
           </li>
           <li>
-            Jorge Andres Sabella
+            <strong>Jorge Andres Sabella</strong>
+            <br>
+            Computer Science and Technology Engineering @ Tecnologico de Monterrey 2020
           </li>
           <li>
-            Yuxin Zhu
+            <strong>Yuxin Zhu</strong>
+            <br>
+            Computer Science and Statistics @ Waterloo University 2021
           </li>
         </ul>
         <strong>Project Advisor:</strong>
@@ -52,32 +60,26 @@
         </ul>
       </p>
       <p>
-        This is an example chat application designed to be a starting point
-        for your CodeU project team work. Here's some stuff to think about:
+        CodeU Chat: A simpler way to chat
       </p>
 
       <ul>
-        <li><strong>Algorithms and data structures:</strong> We've made the app
-            and the code as simple as possible. You will have to extend the
-            existing data structures to support your enhancements to the app,
-            and also make changes for performance and scalability as your app
-            increases in complexity.</li>
-        <li><strong>Look and feel:</strong> The focus of CodeU is on the Java
-          side of things, but if you're particularly interested you might use
-          HTML, CSS, and JavaScript to make the chat app prettier.</li>
-        <li><strong>Customization:</strong> Think about a group you care about.
-          What needs do they have? How could you help? Think about technical
-          requirements, privacy concerns, and accessibility and
-          internationalization.</li>
+        <li><strong>Admin:</strong> We've added admin capabilities to the chat.
+          This allows admin to load test data and allows for extensibility in
+          the code and abilities of the admin. </li>
+        <li><strong>Chat Refresh:</strong> We added polling to the chat. This allows
+          the chat to auto-refresh messages so the user doesn't have to refresh
+          themselves.</li>
+        <li><strong>Profile:</strong> We added a profile page. Each user
+          can view past messages and "moments". They can also add descriptions
+          to their pages.</li>
+        <li><strong>Look and feel:</strong> We changed the appearence of the
+          front end to make it cleaner and simpler. We also changed the color
+          scheme and fonts. We also included the bootstrap library to the code
+          base.</li>
       </ul>
-
-      <p>
-        This is your code now. Get familiar with it and get comfortable
-        working with your team to plan and make changes. Start by updating the
-        homepage and this about page to tell your users more about your team.
-        This page should also be used to describe the features and improvements
-        you've added.
-      </p>
+      <br>
+      <br>
     </div>
   </div>
 
