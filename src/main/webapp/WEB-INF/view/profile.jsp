@@ -55,7 +55,7 @@
     <hr/>
     <h2 style= "text-align: center;"> About <%= user.getName() %>
     <% if( user.getName().equals(request.getSession().getAttribute("user")) ) { %>
-      <h3 style= "text-align: center;"> Edit your About Me (only you can see this) </h3>
+      <p style= "text-align: center;"> Edit your About Me </p>
        <form action="/profile/" style= "text-align: center;" method="POST">
           <input type="text" name="message" value="<%= about %>">
           <br>

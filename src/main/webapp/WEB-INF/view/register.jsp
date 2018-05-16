@@ -31,7 +31,7 @@
     <br/><br/>
     <p><a href="/login">Already have an account?</a></p>
     <br/>
-    <button type="submit">Submit</button>
+    <button class = "btn btn-default btn-lg" type="submit">Submit</button>
   </form>
 </div>
 <%@ include file = "partials/footer.jsp" %>

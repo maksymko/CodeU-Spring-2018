@@ -40,7 +40,7 @@
           <input type="text" name="conversationTitle">
         </div>
 
-        <button type="submit">Create</button>
+        <button class = "btn btn-default btn-lg" type="submit">Create</button>
       </form>
 
       <hr/>

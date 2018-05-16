@@ -44,6 +44,8 @@
             Yuxin Zhu
           </li>
         </ul>
+      </p>
+      <p>
         <strong>Project Advisor:</strong>
         <ul>
           <li>
