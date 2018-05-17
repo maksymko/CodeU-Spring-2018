@@ -20,6 +20,7 @@ import codeu.model.data.User;
 import codeu.model.store.basic.ConversationStore;
 import codeu.model.store.basic.MessageStore;
 import codeu.model.store.basic.UserStore;
+import codeu.model.store.basic.MomentStore;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class ProfileServletTest {
   private ConversationStore mockConversationStore;
   private MessageStore mockMessageStore;
   private UserStore mockUserStore;
+  private MomentStore mockMomentStore;
 
   @Before
   public void setup() {
@@ -68,6 +70,9 @@ public class ProfileServletTest {
 
     mockUserStore = Mockito.mock(UserStore.class);
     profileServlet.setUserStore(mockUserStore);
+
+    mockMomentStore = Mockito.mock(MomentStore.class);
+    profileServlet.setMomentStore(mockMomentStore);
   }
 
   @Test

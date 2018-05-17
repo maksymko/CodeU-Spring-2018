@@ -44,7 +44,6 @@ public class User {
     this.hashedPassword = hashedPassword;
     this.about = about;
     isAdmin = false;
-    this.conversationIds = conversationIds;
   }
 
   /** Returns the ID of this User. */

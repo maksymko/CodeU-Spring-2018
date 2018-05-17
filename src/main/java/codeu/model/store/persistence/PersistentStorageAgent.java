@@ -17,6 +17,7 @@ package codeu.model.store.persistence;
 import codeu.model.data.Conversation;
 import codeu.model.data.Message;
 import codeu.model.data.User;
+import codeu.model.data.Moment;
 import codeu.model.store.persistence.PersistentDataStore;
 import java.util.List;
 import java.util.UUID;
@@ -101,19 +102,45 @@ public class PersistentStorageAgent {
     return persistentDataStore.loadMessagesByUser(userId);
   }
 
+  /**
+   * Retrieve all Moment objects from the Datastore service.
+   * The returned list may be empty.
+   *
+   * @throws PersistentDataStoreException if an error was detected during the load from the
+   *     Datastore service
+   */
+  public List<Moment> loadMoments() throws PersistentDataStoreException{
+    return persistentDataStore.loadMoments();
+  }
+
+  /**
+   * Retrieve all Moment objects whose userId matches a specific userId from the Datastore service.
+   * The returned list may be empty.
+   *
+   * @throws PersistentDataStoreException if an error was detected during the load from the
+   *     Datastore service
+   */
+  public List<Moment> loadMomentsByUser(UUID userId) throws PersistentDataStoreException{
+    return persistentDataStore.loadMomentsByUser(userId);
+  }
 
   /** Write a User object to the Datastore service. */
   public void writeThrough(User user) {
     persistentDataStore.writeThrough(user);
   }
 
-  /** Write a Message object to the Datastore service. */
+  /** Write a Conversation object to the Datastore service. */
   public void writeThrough(Conversation conversation) {
     persistentDataStore.writeThrough(conversation);
   }
 
-  /** Write a Conversation object to the Datastore service. */
+  /** Write a Message object to the Datastore service. */
   public void writeThrough(Message message) {
     persistentDataStore.writeThrough(message);
+  }
+
+  /** Write a Moment object to the Datastore service. */
+  public void writeThrough(Moment moment) {
+    persistentDataStore.writeThrough(moment);
   }
 }
