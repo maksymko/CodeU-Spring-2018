@@ -130,3 +130,12 @@ input {
   color: #222222;
 }
 
+button {
+  font-size: 18px;
+}
+
+#moments{
+  list-style-type:none;
+  border:2px;
+  padding: 0;
+}

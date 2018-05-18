@@ -16,6 +16,7 @@ package codeu.model.store.persistence;
 
 import codeu.model.data.Conversation;
 import codeu.model.data.Message;
+import codeu.model.data.Moment;
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentDataStoreException;
 import com.google.appengine.api.datastore.DatastoreService;
@@ -147,7 +148,6 @@ public class PersistentDataStore {
     return messages;
   }
 
-
   /**
    * Loads all Message objects from the Datastore service and returns them in a List.
    *
@@ -179,6 +179,65 @@ public class PersistentDataStore {
 
   }
 
+  /**
+   * Loads all Moment objects from query and returns them in a List.
+   *
+   * @throws PersistentDataStoreException if an error was detected during the load from the
+   *     Datastore service
+   */
+  public List<Moment> loadMomentsFromQuery(Query query) throws PersistentDataStoreException {
+    List<Moment> moments = new ArrayList<>();
+    PreparedQuery results = datastore.prepare(query);
+    for (Entity entity : results.asIterable()) {
+      try {
+        UUID uuid = UUID.fromString((String) entity.getProperty("uuid"));
+        UUID authorUuid = UUID.fromString((String) entity.getProperty("user_uuid"));
+        Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
+        String content = (String) entity.getProperty("content");
+        String location = (String) entity.getProperty("location");
+        Moment moment = new Moment(uuid, authorUuid, content, creationTime, location);
+        moments.add(moment);
+      } catch (Exception e) {
+        // In a production environment, errors should be very rare. Errors which may
+        // occur include network errors, Datastore service errors, authorization errors,
+        // database entity definition mismatches, or service mismatches.
+        throw new PersistentDataStoreException(e);
+      }
+    }
+    return moments;
+  }
+
+  /**
+   * Loads all Moment objects from the Datastore service and returns them in a List.
+   *
+   * @throws PersistentDataStoreException if an error was detected during the load from the
+   *     Datastore service
+   */
+  public List<Moment> loadMoments() throws PersistentDataStoreException {
+
+    // Retrieve all messages from the datastore.
+    Query query = new Query("moments");
+    return loadMomentsFromQuery(query);
+  }
+
+    /**
+     * Loads all Moment objects whose userId matches a specific userId from the Datastore service and
+     *     returns them in a List.
+     *
+     * @throws PersistentDataStoreException if an error was detected during the load from the
+     *     Datastore service
+     */
+  public List<Moment> loadMomentsByUser(UUID userId) throws PersistentDataStoreException {
+
+    // Retrieve moments written by user from the datastore.
+    Filter propertyFilter =
+            new FilterPredicate("user_uuid", FilterOperator.EQUAL, userId.toString());
+    Query query = new Query("moments").setFilter(propertyFilter)
+            .addSort("creation_time", Query.SortDirection.DESCENDING);
+    return loadMomentsFromQuery(query);
+  }
+
+
   /** Write a User object to the Datastore service. */
   public void writeThrough(User user) {
     Entity userEntity = new Entity("chat-users");
@@ -208,5 +267,16 @@ public class PersistentDataStore {
     conversationEntity.setProperty("title", conversation.getTitle());
     conversationEntity.setProperty("creation_time", conversation.getCreationTime().toString());
     datastore.put(conversationEntity);
+  }
+
+  /** Write a Moment object to the Datastore service. */
+  public void writeThrough(Moment moment) {
+    Entity momentEntity = new Entity("moments");
+    momentEntity.setProperty("uuid", moment.getId().toString());
+    momentEntity.setProperty("user_uuid", moment.getUserId().toString());
+    momentEntity.setProperty("content", moment.getContent());
+    momentEntity.setProperty("creation_time", moment.getCreationTime().toString());
+    momentEntity.setProperty("location", moment.getLocation());
+    datastore.put(momentEntity);
   }
 }
