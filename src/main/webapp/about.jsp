@@ -52,6 +52,8 @@
             Computer Science and Statistics @ Waterloo University 2021
           </li>
         </ul>
+      </p>
+      <p>
         <strong>Project Advisor:</strong>
         <ul>
           <li>

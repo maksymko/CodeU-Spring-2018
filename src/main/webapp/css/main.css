@@ -56,32 +56,30 @@ nav a {
 h1 {
   color: #757575;
   font-family: 'Fjalla One', sans-serif;
-  font-weight: normal;
-  text-transform: uppercase;
-  line-height: 46px;
-  font-size: 43px;
-  margin: 0 0 23px 0;
-  color: #757575;
 }
 
 h2 {
   font-family: 'Cantarell', sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 23px;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  margin: 0 0 23px 0;
+}
+
+h3 {
+  font-family: 'Cantarell', sans-serif;
 }
 
 p {
   font-family: 'Cantarell', sans-serif;
-  font-size: 17px;
-  line-height: 23px;
-  margin: 0 0 23px 0;
+}
+
+li {
+  font-family: 'Cantarell', sans-serif;
+}
+
+label {
+  font-family: 'Cantarell', sans-serif;
 }
 
 input {
+  font-family: 'Cantarell', sans-serif;
   font-size: 18px;
 }
 

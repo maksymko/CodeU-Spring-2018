@@ -46,11 +46,11 @@
       <br/><br/>
       <p><a href="/register">Don't have an account?</a></p>
       <br/>
-      <button type="submit" value="login" name="login">Login</button>
+      <button class = "btn btn-default btn-lg" type="submit" value="login" name="login">Login</button>
     </form>
    <% } else {%>
         <form action="/login" method="POST">
-       <button type="submit" value="logout" name="logout">Logout</button>
+       <button class = "btn btn-default btn-lg" type="submit" value="logout" name="logout">Logout</button>
         </form>
    <% } %>
   </div>
