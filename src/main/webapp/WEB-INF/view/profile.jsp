@@ -61,7 +61,20 @@
     </h1>
 
     <h2 style= "text-align: center;"> About <%= user.getName() %>
+
+    <% if( user.getName().equals(request.getSession().getAttribute("user")) ) { %>
+      <p style= "text-align: center;"> Edit your About Me </p>
+       <form action="/profile/" style= "text-align: center;" method="POST">
+          <input type="text" name="message" value="<%= about %>">
+          <br>
+          <input type="submit" value="Submit">
+        </form>
+    <% } else { %>
+      <p style="color: red"><%= about %></p>
+    <% } %>
+
       <p style="color: red; text-align: center"><%= about %></p>
+
     </h2>
 
      <h2 style= "text-align: center;"><%= user.getName() %>'s Moments</h2>
