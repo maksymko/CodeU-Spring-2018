@@ -30,8 +30,8 @@
         <ul class="nav navbar-nav">
           <li><a href="/conversations">Conversations</a></li>
           <% if(request.getSession().getAttribute("user") != null){ %>
-          <li><a>Hello <%= request.getSession().getAttribute("user") %>!</a></li>
-          <li><a href="/profile/<%= request.getSession().getAttribute("user") %>"><%= request.getSession().getAttribute("user") %> Profile Page</a></li>
+          <!--<li><a>Hello <%= request.getSession().getAttribute("user") %>!</a></li>-->
+          <li><a href="/profile/<%= request.getSession().getAttribute("user") %>">Profile</a></li>
           <% } %>
           <li><a href="/about.jsp">About</a></li>
         </ul>
@@ -39,8 +39,13 @@
         <% if(request.getSession().getAttribute("user") != null){ %>
           <li><a href="/login">Logout</a></li>
         <% } else{ %>
-          <li><a href="/register">Register</a></li>
-          <li><a href="/login">Login</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+            <li><a href="/register">Register</a></li>
+            <li><a href="/login">Login</a></li>
+            </ul>
+           </li>
         <% } %>
         <% if(request.getSession().getAttribute("admin") != null){ %>
           <li><a href="/admin">Admin</a></li>
